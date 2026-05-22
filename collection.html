@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FAF7F2">
+  <title>The Collection — Maison</title>
+  <meta name="description" content="The full Maison collection: thirty compositions across floral, woody, oriental and fresh families.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Inter:wght@400;500&display=swap">
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="assets/components.css">
+  <link rel="stylesheet" href="assets/site.css">
+  <script src="assets/global.js" defer></script>
+</head>
+<body>
+  <a class="skip-to-content-link" href="#main">Skip to content</a>
+
+  <header class="header" data-header>
+    <div class="container header__inner">
+      <button class="header__menu-toggle" type="button" aria-label="Menu" aria-expanded="false" data-menu-toggle>
+        <span class="header__menu-bars" aria-hidden="true"></span>
+      </button>
+      <nav class="header__nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="collection.html" aria-current="page">Collection</a></li>
+          <li><a href="the-house.html">The House</a></li>
+          <li><a href="journal.html">Journal</a></li>
+        </ul>
+      </nav>
+      <a href="index.html" class="header__logo">Maison</a>
+      <div class="header__actions"><a href="contact.html">Contact</a></div>
+    </div>
+    <div class="header__panel">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="the-house.html">The House</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="page-hero">
+      <div class="container">
+        <p class="t-eyebrow page-hero__eyebrow">The Collection</p>
+        <h1 class="page-hero__heading">Thirty Compositions</h1>
+        <p class="page-hero__sub">Hand-blended in small batches in Paris. Each composed around a single olfactory memory.</p>
+      </div>
+    </section>
+
+    <section class="demo-grid" style="padding-top: var(--space-5);">
+      <div class="container">
+        <ul class="demo-grid__list" id="collection-grid"></ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__cols">
+        <div class="footer__col footer__brand">
+          <p class="footer__brand-wordmark">Maison</p>
+          <p>A small atelier of luxury perfumes, hand-blended in Paris in batches no larger than three hundred bottles.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Discover</h4>
+          <ul>
+            <li><a href="collection.html">Collection</a></li>
+            <li><a href="the-house.html">The House</a></li>
+            <li><a href="journal.html">Journal</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Stockists</a></li>
+            <li><a href="contact.html">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Pinterest</a></li>
+            <li><a href="#">Journal RSS</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p>© 2026 Maison. All rights reserved.</p>
+        <p>Paris VIᵉ</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const fragrances = [
+        { name: "Cuir Bohème", family: "Oriental", notes: "Leather · Oud · Saffron", price: 320, size: 50 },
+        { name: "Néroli Sauvage", family: "Fresh", notes: "Neroli · Sea salt · Bergamot", price: 210, size: 100 },
+        { name: "Bois de Lune", family: "Woody", notes: "Cedar · Moonflower · Galbanum", price: 290, size: 50 },
+        { name: "Iris Pourpre", family: "Floral", notes: "Iris · Violet · Heliotrope", price: 340, size: 100 },
+        { name: "Tubéreuse Noire", family: "Floral", notes: "Tuberose · Coffee · Vanilla", price: 380, size: 50 },
+        { name: "Ambre Soleil", family: "Oriental", notes: "Amber · Sandalwood · Resin", price: 260, size: 100 },
+        { name: "Vétiver Brut", family: "Woody", notes: "Vetiver · Birch tar · Smoke", price: 240, size: 100 },
+        { name: "Rose Indigo", family: "Floral", notes: "Rose · Plum · Patchouli", price: 310, size: 50 },
+        { name: "Oud Sacré", family: "Oriental", notes: "Oud · Frankincense · Rose", price: 420, size: 50 },
+        { name: "Jasmin d’Hiver", family: "Floral", notes: "Jasmine · Cardamom · Vetiver", price: 295, size: 100 },
+        { name: "Patchouli Velours", family: "Woody", notes: "Patchouli · Cocoa · Suede", price: 280, size: 50 },
+        { name: "Bergamote Sel", family: "Fresh", notes: "Bergamot · Sea salt · Coriander", price: 195, size: 100 },
+        { name: "Santal Cendré", family: "Woody", notes: "Sandalwood · Ash · Iris", price: 330, size: 50 },
+        { name: "Mousse de Pierre", family: "Woody", notes: "Lichen · Stone · Hay", price: 365, size: 100 },
+        { name: "Géranium Or", family: "Floral", notes: "Geranium · Honey · Gold leaf", price: 270, size: 50 },
+        { name: "Iris Cendré", family: "Floral", notes: "Iris · Carrot seed · Smoke", price: 355, size: 50 },
+        { name: "Cassis Voyage", family: "Fresh", notes: "Blackcurrant · Pine · Wet leaves", price: 225, size: 100 },
+        { name: "Encens Blanc", family: "Oriental", notes: "Frankincense · White flowers · Myrrh", price: 395, size: 50 },
+        { name: "Magnolia Suède", family: "Floral", notes: "Magnolia · Suede · Vanilla", price: 305, size: 50 },
+        { name: "Cèdre Pluie", family: "Woody", notes: "Cedar · Petrichor · Galbanum", price: 285, size: 100 },
+        { name: "Figue Lointaine", family: "Fresh", notes: "Fig · Coconut · Pistachio", price: 215, size: 50 },
+        { name: "Datura Minuit", family: "Oriental", notes: "Datura · Tobacco · Civet", price: 375, size: 50 },
+        { name: "Mimosa Cuir", family: "Floral", notes: "Mimosa · Leather · Almond", price: 300, size: 50 },
+        { name: "Vanille Tabac", family: "Oriental", notes: "Vanilla · Tobacco · Tonka", price: 245, size: 100 },
+        { name: "Lys d’Eau", family: "Floral", notes: "Water lily · Cucumber · White tea", price: 205, size: 100 },
+        { name: "Poivre Rose", family: "Fresh", notes: "Pink pepper · Rose · Geranium", price: 255, size: 50 },
+        { name: "Pamplemousse Brûlé", family: "Fresh", notes: "Pink grapefruit · Caramel · Smoke", price: 235, size: 100 },
+        { name: "Lavande Fossile", family: "Floral", notes: "Lavender · Amber · Tobacco", price: 275, size: 50 },
+        { name: "Myrrhe Doré", family: "Oriental", notes: "Myrrh · Gold · Saffron", price: 410, size: 50 },
+        { name: "Hêtre Sauvage", family: "Woody", notes: "Beech · Resin · Forest floor", price: 320, size: 100 }
+      ];
+
+      function bottle(name) {
+        return `<svg class="demo-card__bottle" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="48" y="6" width="24" height="14" rx="1" class="demo-card__cap"/><rect x="52" y="20" width="16" height="10" class="demo-card__neck"/><rect x="22" y="30" width="76" height="118" rx="4" class="demo-card__body-shape"/><rect x="34" y="64" width="52" height="56" class="demo-card__label-rect"/><text x="60" y="88" text-anchor="middle" class="demo-card__label-mark">M</text><text x="60" y="104" text-anchor="middle" class="demo-card__label-name">${name.toUpperCase()}</text></svg>`;
+      }
+
+      function card(f) {
+        const familyClass = 'demo-card--' + f.family.toLowerCase();
+        return `<li class="demo-card ${familyClass}"><a href="#" class="demo-card__link" aria-label="${f.name} — preview only" onclick="event.preventDefault()"><div class="demo-card__media">${bottle(f.name)}</div><div class="demo-card__body-text"><p class="t-eyebrow demo-card__family">${f.family}</p><h3 class="demo-card__name">${f.name}</h3><p class="demo-card__notes">${f.notes}</p><div class="demo-card__meta"><span class="demo-card__size">${f.size} ml · Eau de Parfum</span><span class="demo-card__price">£${f.price}</span></div></div></a></li>`;
+      }
+
+      const grid = document.getElementById('collection-grid');
+      if (grid) grid.innerHTML = fragrances.map(card).join('');
+    })();
+  </script>
+</body>
+</html>

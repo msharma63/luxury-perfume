@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FAF7F2">
+  <title>Maison — A small atelier of luxury perfumes</title>
+  <meta name="description" content="Maison is a small Parisian atelier composing fragrances in small batches. Thirty compositions, each built around a single olfactory memory.">
+
+  <meta property="og:title" content="Maison — Luxury Perfume Atelier">
+  <meta property="og:description" content="Thirty compositions, hand-blended in Paris.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Italiana&family=Inter:wght@400;500&display=swap">
+
+  <link rel="stylesheet" href="assets/tokens.css">
+  <link rel="stylesheet" href="assets/components.css">
+  <link rel="stylesheet" href="assets/site.css">
+
+  <script src="assets/global.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-to-content-link" href="#main">Skip to content</a>
+
+  <header class="header" data-header>
+    <div class="container header__inner">
+      <button class="header__menu-toggle" type="button" aria-label="Menu" aria-expanded="false" data-menu-toggle>
+        <span class="header__menu-bars" aria-hidden="true"></span>
+      </button>
+
+      <nav class="header__nav" aria-label="Primary">
+        <ul>
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="collection.html">Collection</a></li>
+          <li><a href="the-house.html">The House</a></li>
+          <li><a href="journal.html">Journal</a></li>
+        </ul>
+      </nav>
+
+      <a href="index.html" class="header__logo">Maison</a>
+
+      <div class="header__actions">
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div class="header__panel">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="the-house.html">The House</a></li>
+        <li><a href="journal.html">Journal</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero__inner">
+        <p class="t-eyebrow hero__eyebrow">The new fragrance</p>
+        <h1 class="t-hero hero__heading">Vélin Noir</h1>
+        <p class="hero__sub">An accord of oud, iris and bitter orange — composed for the long evening.</p>
+        <a href="collection.html" class="btn hero__cta">Discover the collection</a>
+      </div>
+    </section>
+
+    <!-- EDITORIAL SPLIT -->
+    <section class="editorial-split">
+      <div class="container">
+        <div class="split">
+          <div class="editorial-split__media" aria-hidden="true"></div>
+          <div class="editorial-split__body">
+            <p class="t-eyebrow">Composition no. 7</p>
+            <h2 class="t-h2">An ode to bergamot and ash</h2>
+            <p>From the first note to the long, unfolding base, this composition was built around a single memory of citrus burnt by the August sun.</p>
+            <a href="collection.html" class="btn--inline editorial-split__cta">Explore the fragrance →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAMILY TILES -->
+    <section class="family-tiles">
+      <div class="container">
+        <header class="family-tiles__head">
+          <p class="t-eyebrow eyebrow-rule">Olfactory families</p>
+          <h2 class="t-h2">Find your accord</h2>
+        </header>
+
+        <div class="grid grid--families">
+          <a href="collection.html#floral" class="family-tile family-tile--floral">
+            <div class="family-tile__media">
+              <svg viewBox="0 0 80 80" aria-hidden="true"><g fill="#6e4147" transform="translate(40 40)"><ellipse cx="0" cy="-14" rx="6" ry="14"/><ellipse cx="0" cy="-14" rx="6" ry="14" transform="rotate(72)"/><ellipse cx="0" cy="-14" rx="6" ry="14" transform="rotate(144)"/><ellipse cx="0" cy="-14" rx="6" ry="14" transform="rotate(216)"/><ellipse cx="0" cy="-14" rx="6" ry="14" transform="rotate(288)"/><circle r="4" fill="#a8884F"/></g></svg>
+            </div>
+            <div class="family-tile__body">
+              <h3 class="family-tile__title">Floral</h3>
+              <p>Iris, rose, jasmine — composed with restraint.</p>
+            </div>
+          </a>
+
+          <a href="collection.html#woody" class="family-tile family-tile--woody">
+            <div class="family-tile__media">
+              <svg viewBox="0 0 80 80" aria-hidden="true"><g stroke="#3d2c1c" stroke-width="2" fill="none"><path d="M40 8 V72 M28 24 L40 32 M52 18 L40 26 M30 44 L40 50 M50 38 L40 46 M28 60 L40 64"/></g></svg>
+            </div>
+            <div class="family-tile__body">
+              <h3 class="family-tile__title">Woody</h3>
+              <p>Cedar, vetiver, oud — grounded and slow.</p>
+            </div>
+          </a>
+
+          <a href="collection.html#oriental" class="family-tile family-tile--oriental">
+            <div class="family-tile__media">
+              <svg viewBox="0 0 80 80" aria-hidden="true"><g stroke="#4d2f10" stroke-width="2" fill="none"><path d="M16 60 Q40 20 64 60"/><path d="M40 24 V14"/><circle cx="40" cy="10" r="3" fill="#4d2f10"/></g></svg>
+            </div>
+            <div class="family-tile__body">
+              <h3 class="family-tile__title">Oriental</h3>
+              <p>Amber, resin, spice — warmth as architecture.</p>
+            </div>
+          </a>
+
+          <a href="collection.html#fresh" class="family-tile family-tile--fresh">
+            <div class="family-tile__media">
+              <svg viewBox="0 0 80 80" aria-hidden="true"><g fill="none" stroke="#2c4538" stroke-width="2" stroke-linecap="round"><path d="M20 50 Q30 30 40 50 Q50 70 60 50"/><path d="M20 60 Q30 40 40 60 Q50 80 60 60"/></g></svg>
+            </div>
+            <div class="family-tile__body">
+              <h3 class="family-tile__title">Fresh</h3>
+              <p>Bergamot, neroli, sea salt — the first hour of light.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMO FRAGRANCE GRID -->
+    <section class="demo-grid" id="collection">
+      <div class="container">
+        <header class="demo-grid__head">
+          <p class="t-eyebrow">The Collection</p>
+          <h2 class="t-h2 demo-grid__heading">Thirty Compositions</h2>
+          <p class="demo-grid__body t-small">Hand-blended in small batches in Paris. Each composed around a single olfactory memory.</p>
+        </header>
+
+        <ul class="demo-grid__list" id="collection-grid">
+          <!-- Cards rendered by JS below for maintainability; also visible via SSR-like inline below -->
+        </ul>
+
+        <noscript>
+          <p class="t-small" style="text-align:center;padding:var(--space-5);color:var(--smoke);">Enable JavaScript to see the collection.</p>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- EDITORIAL SPLIT (atelier) -->
+    <section class="editorial-split">
+      <div class="container">
+        <div class="split split--reverse">
+          <div class="editorial-split__media" aria-hidden="true" style="background: linear-gradient(135deg, #ead7bf, #d4b896);"></div>
+          <div class="editorial-split__body">
+            <p class="t-eyebrow">The house</p>
+            <h2 class="t-h2">A small atelier in the 6th</h2>
+            <p>Each composition begins as a phrase scribbled on the back of an envelope, lived with for months before it ever reaches a vial. We make small batches, by hand, in Paris.</p>
+            <a href="the-house.html" class="btn--inline editorial-split__cta">Read the story →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNAL TEASER -->
+    <section class="journal-teaser">
+      <div class="container">
+        <header class="journal-teaser__head">
+          <p class="t-eyebrow">The Journal</p>
+          <h2 class="t-h2">Notes from the atelier</h2>
+          <a href="journal.html" class="btn--inline">Read all →</a>
+        </header>
+
+        <ul class="journal-teaser__list">
+          <li class="journal-card journal-card--notes">
+            <a href="journal.html">
+              <div class="journal-card__media">
+                <svg viewBox="0 0 80 80" aria-hidden="true"><g fill="#0E0E0C"><ellipse cx="40" cy="40" rx="6" ry="18"/><ellipse cx="40" cy="40" rx="6" ry="18" transform="rotate(60 40 40)"/><ellipse cx="40" cy="40" rx="6" ry="18" transform="rotate(120 40 40)"/></g></svg>
+              </div>
+              <div class="journal-card__body">
+                <p class="t-eyebrow">Notes</p>
+                <h3 class="journal-card__title">A short essay on iris</h3>
+                <p class="t-small">May 2026 · The atelier</p>
+              </div>
+            </a>
+          </li>
+
+          <li class="journal-card journal-card--rituals">
+            <a href="journal.html">
+              <div class="journal-card__media">
+                <svg viewBox="0 0 80 80" aria-hidden="true"><g stroke="#0E0E0C" stroke-width="1.5" fill="none"><rect x="22" y="20" width="36" height="44" rx="2"/><rect x="32" y="30" width="16" height="24"/></g></svg>
+              </div>
+              <div class="journal-card__body">
+                <p class="t-eyebrow">Rituals</p>
+                <h3 class="journal-card__title">The two-spray ritual</h3>
+                <p class="t-small">April 2026 · The atelier</p>
+              </div>
+            </a>
+          </li>
+
+          <li class="journal-card journal-card--people">
+            <a href="journal.html">
+              <div class="journal-card__media">
+                <svg viewBox="0 0 80 80" aria-hidden="true"><g stroke="#0E0E0C" stroke-width="1.5" fill="none"><circle cx="40" cy="32" r="10"/><path d="M22 64 Q40 48 58 64"/></g></svg>
+              </div>
+              <div class="journal-card__body">
+                <p class="t-eyebrow">People</p>
+                <h3 class="journal-card__title">In conversation with the perfumer</h3>
+                <p class="t-small">March 2026 · Interviews</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+      <div class="container newsletter__inner">
+        <p class="t-eyebrow newsletter__eyebrow">Correspondence</p>
+        <h2 class="t-h2 newsletter__heading">Letters from the atelier</h2>
+        <p class="newsletter__sub">Occasional notes — new compositions, ingredient stories, private launches.</p>
+        <form class="newsletter__form" data-newsletter>
+          <input type="email" name="email" placeholder="Email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="t-small" data-newsletter-message hidden style="color: var(--champagne);"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__cols">
+        <div class="footer__col footer__brand">
+          <p class="footer__brand-wordmark">Maison</p>
+          <p>A small atelier of luxury perfumes, hand-blended in Paris in batches no larger than three hundred bottles.</p>
+        </div>
+        <div class="footer__col">
+          <h4>Discover</h4>
+          <ul>
+            <li><a href="collection.html">Collection</a></li>
+            <li><a href="the-house.html">The House</a></li>
+            <li><a href="journal.html">Journal</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Visit</h4>
+          <ul>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Stockists</a></li>
+            <li><a href="contact.html">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Follow</h4>
+          <ul>
+            <li><a href="#" rel="noreferrer noopener">Instagram</a></li>
+            <li><a href="#" rel="noreferrer noopener">Pinterest</a></li>
+            <li><a href="#" rel="noreferrer noopener">Journal RSS</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__base">
+        <p>© 2026 Maison. All rights reserved.</p>
+        <p>Paris VIᵉ</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Renders the 30 fragrance cards from a single source of truth -->
+  <script>
+    (function () {
+      const fragrances = [
+        { name: "Cuir Bohème", family: "Oriental", notes: "Leather · Oud · Saffron", price: 320, size: 50 },
+        { name: "Néroli Sauvage", family: "Fresh", notes: "Neroli · Sea salt · Bergamot", price: 210, size: 100 },
+        { name: "Bois de Lune", family: "Woody", notes: "Cedar · Moonflower · Galbanum", price: 290, size: 50 },
+        { name: "Iris Pourpre", family: "Floral", notes: "Iris · Violet · Heliotrope", price: 340, size: 100 },
+        { name: "Tubéreuse Noire", family: "Floral", notes: "Tuberose · Coffee · Vanilla", price: 380, size: 50 },
+        { name: "Ambre Soleil", family: "Oriental", notes: "Amber · Sandalwood · Resin", price: 260, size: 100 },
+        { name: "Vétiver Brut", family: "Woody", notes: "Vetiver · Birch tar · Smoke", price: 240, size: 100 },
+        { name: "Rose Indigo", family: "Floral", notes: "Rose · Plum · Patchouli", price: 310, size: 50 },
+        { name: "Oud Sacré", family: "Oriental", notes: "Oud · Frankincense · Rose", price: 420, size: 50 },
+        { name: "Jasmin d’Hiver", family: "Floral", notes: "Jasmine · Cardamom · Vetiver", price: 295, size: 100 },
+        { name: "Patchouli Velours", family: "Woody", notes: "Patchouli · Cocoa · Suede", price: 280, size: 50 },
+        { name: "Bergamote Sel", family: "Fresh", notes: "Bergamot · Sea salt · Coriander", price: 195, size: 100 },
+        { name: "Santal Cendré", family: "Woody", notes: "Sandalwood · Ash · Iris", price: 330, size: 50 },
+        { name: "Mousse de Pierre", family: "Woody", notes: "Lichen · Stone · Hay", price: 365, size: 100 },
+        { name: "Géranium Or", family: "Floral", notes: "Geranium · Honey · Gold leaf", price: 270, size: 50 },
+        { name: "Iris Cendré", family: "Floral", notes: "Iris · Carrot seed · Smoke", price: 355, size: 50 },
+        { name: "Cassis Voyage", family: "Fresh", notes: "Blackcurrant · Pine · Wet leaves", price: 225, size: 100 },
+        { name: "Encens Blanc", family: "Oriental", notes: "Frankincense · White flowers · Myrrh", price: 395, size: 50 },
+        { name: "Magnolia Suède", family: "Floral", notes: "Magnolia · Suede · Vanilla", price: 305, size: 50 },
+        { name: "Cèdre Pluie", family: "Woody", notes: "Cedar · Petrichor · Galbanum", price: 285, size: 100 },
+        { name: "Figue Lointaine", family: "Fresh", notes: "Fig · Coconut · Pistachio", price: 215, size: 50 },
+        { name: "Datura Minuit", family: "Oriental", notes: "Datura · Tobacco · Civet", price: 375, size: 50 },
+        { name: "Mimosa Cuir", family: "Floral", notes: "Mimosa · Leather · Almond", price: 300, size: 50 },
+        { name: "Vanille Tabac", family: "Oriental", notes: "Vanilla · Tobacco · Tonka", price: 245, size: 100 },
+        { name: "Lys d’Eau", family: "Floral", notes: "Water lily · Cucumber · White tea", price: 205, size: 100 },
+        { name: "Poivre Rose", family: "Fresh", notes: "Pink pepper · Rose · Geranium", price: 255, size: 50 },
+        { name: "Pamplemousse Brûlé", family: "Fresh", notes: "Pink grapefruit · Caramel · Smoke", price: 235, size: 100 },
+        { name: "Lavande Fossile", family: "Floral", notes: "Lavender · Amber · Tobacco", price: 275, size: 50 },
+        { name: "Myrrhe Doré", family: "Oriental", notes: "Myrrh · Gold · Saffron", price: 410, size: 50 },
+        { name: "Hêtre Sauvage", family: "Woody", notes: "Beech · Resin · Forest floor", price: 320, size: 100 }
+      ];
+
+      // Expose for the dedicated collection page
+      window.MAISON_FRAGRANCES = fragrances;
+
+      function bottle(name) {
+        return `
+          <svg class="demo-card__bottle" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="48" y="6" width="24" height="14" rx="1" class="demo-card__cap"/>
+            <rect x="52" y="20" width="16" height="10" class="demo-card__neck"/>
+            <rect x="22" y="30" width="76" height="118" rx="4" class="demo-card__body-shape"/>
+            <rect x="34" y="64" width="52" height="56" class="demo-card__label-rect"/>
+            <text x="60" y="88" text-anchor="middle" class="demo-card__label-mark">M</text>
+            <text x="60" y="104" text-anchor="middle" class="demo-card__label-name">${name.toUpperCase()}</text>
+          </svg>
+        `;
+      }
+
+      function card(f) {
+        const familyClass = 'demo-card--' + f.family.toLowerCase();
+        return `
+          <li class="demo-card ${familyClass}">
+            <a href="#" class="demo-card__link" aria-label="${f.name} — preview only" onclick="event.preventDefault()">
+              <div class="demo-card__media">${bottle(f.name)}</div>
+              <div class="demo-card__body-text">
+                <p class="t-eyebrow demo-card__family">${f.family}</p>
+                <h3 class="demo-card__name">${f.name}</h3>
+                <p class="demo-card__notes">${f.notes}</p>
+                <div class="demo-card__meta">
+                  <span class="demo-card__size">${f.size} ml · Eau de Parfum</span>
+                  <span class="demo-card__price">£${f.price}</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        `;
+      }
+
+      const grid = document.getElementById('collection-grid');
+      if (grid) grid.innerHTML = fragrances.map(card).join('');
+    })();
+  </script>
+</body>
+</html>
