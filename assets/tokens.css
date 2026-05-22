@@ -71,7 +71,10 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background-color: var(--paper);
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 160' width='160' height='160'%3E%3Cg fill='none' stroke='%23C9A96E' stroke-width='0.8' stroke-linecap='round' opacity='0.16'%3E%3Cg transform='translate(40 40)'%3E%3Cellipse cx='0' cy='-10' rx='3.2' ry='9'/%3E%3Cellipse cx='0' cy='-10' rx='3.2' ry='9' transform='rotate(72)'/%3E%3Cellipse cx='0' cy='-10' rx='3.2' ry='9' transform='rotate(144)'/%3E%3Cellipse cx='0' cy='-10' rx='3.2' ry='9' transform='rotate(216)'/%3E%3Cellipse cx='0' cy='-10' rx='3.2' ry='9' transform='rotate(288)'/%3E%3Ccircle cx='0' cy='0' r='1.6' fill='%23C9A96E' stroke='none'/%3E%3C/g%3E%3Cg transform='translate(120 120)'%3E%3Cellipse cx='0' cy='-10' rx='3.2' ry='9'/%3E%3Cellipse cx='0' cy='-10' rx='3.2' ry='9' transform='rotate(72)'/%3E%3Cellipse cx='0' cy='-10' rx='3.2' ry='9' transform='rotate(144)'/%3E%3Cellipse cx='0' cy='-10' rx='3.2' ry='9' transform='rotate(216)'/%3E%3Cellipse cx='0' cy='-10' rx='3.2' ry='9' transform='rotate(288)'/%3E%3Ccircle cx='0' cy='0' r='1.6' fill='%23C9A96E' stroke='none'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 160px 160px;
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: var(--type-body);

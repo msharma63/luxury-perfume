@@ -96,13 +96,13 @@
         "type": "font_picker",
         "id": "type_header_font",
         "label": "Display serif",
-        "default": "italiana_n4"
+        "default": "playfair_display_n4"
       },
       {
         "type": "font_picker",
         "id": "type_body_font",
         "label": "UI sans",
-        "default": "inter_n4"
+        "default": "assistant_n4"
       },
       {
         "type": "header",

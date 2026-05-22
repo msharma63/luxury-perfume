@@ -35,6 +35,14 @@
       },
       "block_order": ["floral", "woody", "oriental", "fresh"]
     },
+    "demo_grid": {
+      "type": "demo-fragrance-grid",
+      "settings": {
+        "eyebrow": "The Collection",
+        "heading": "Thirty Compositions",
+        "body": "Hand-blended in small batches in Paris. Each composed around a single olfactory memory."
+      }
+    },
     "story": {
       "type": "editorial-split",
       "settings": {
@@ -64,5 +72,5 @@
       }
     }
   },
-  "order": ["hero", "featured", "families", "story", "journal", "newsletter"]
+  "order": ["hero", "featured", "families", "demo_grid", "story", "journal", "newsletter"]
 }
