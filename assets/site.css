@@ -23,9 +23,18 @@
 .header__logo {
   justify-self: center;
   font-family: var(--font-display);
-  font-size: 28px;
-  letter-spacing: 0.04em;
+  font-size: clamp(15px, 2.4vw, 22px);
+  letter-spacing: 0.08em;
   line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .header__logo {
+    font-size: 13px;
+    letter-spacing: 0.06em;
+  }
 }
 
 .header__wordmark {
@@ -501,7 +510,8 @@
 
 .footer__brand-wordmark {
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: 26px;
+  letter-spacing: 0.06em;
   margin: 0 0 var(--space-2);
 }
 
