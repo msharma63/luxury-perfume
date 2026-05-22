@@ -1,0 +1,48 @@
+<section class="section">
+  <div class="container account-page">
+    <header class="collection-page__head">
+      <p class="t-eyebrow">Order {{ order.name }}</p>
+      <h1 class="t-h1">{{ order.created_at | date: '%B %-d, %Y' }}</h1>
+      <p class="t-small">{{ order.financial_status_label }} · {{ order.fulfillment_status_label }}</p>
+    </header>
+
+    <table class="orders-table">
+      <thead>
+        <tr><th>Item</th><th>Quantity</th><th>Total</th></tr>
+      </thead>
+      <tbody>
+        {%- for line in order.line_items -%}
+          <tr>
+            <td>
+              <a href="{{ line.product.url }}" class="btn--inline">{{ line.title }}</a>
+              {%- unless line.variant.title contains 'Default' -%}
+                <p class="t-small">{{ line.variant.title }}</p>
+              {%- endunless -%}
+            </td>
+            <td>{{ line.quantity }}</td>
+            <td>{{ line.final_line_price | money }}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+      <tfoot>
+        <tr><th colspan="2">Subtotal</th><td>{{ order.subtotal_price | money }}</td></tr>
+        {%- for shipping in order.shipping_methods -%}
+          <tr><th colspan="2">Shipping ({{ shipping.title }})</th><td>{{ shipping.price | money }}</td></tr>
+        {%- endfor -%}
+        {%- for tax in order.tax_lines -%}
+          <tr><th colspan="2">Tax ({{ tax.title }} {{ tax.rate | times: 100 }}%)</th><td>{{ tax.price | money }}</td></tr>
+        {%- endfor -%}
+        <tr><th colspan="2">Total</th><td><strong>{{ order.total_price | money }}</strong></td></tr>
+      </tfoot>
+    </table>
+
+    <p style="margin-top:var(--space-5);"><a href="{{ routes.account_url }}" class="btn--inline">Return to account</a></p>
+  </div>
+</section>
+
+<style>
+  .account-page { max-width: 880px; margin-inline: auto; }
+  .orders-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .orders-table th, .orders-table td { padding: var(--space-3) 0; border-bottom: var(--hairline-w) solid var(--hairline); text-align: left; }
+  .orders-table tfoot th { text-align: right; }
+</style>

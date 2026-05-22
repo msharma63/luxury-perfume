@@ -1,0 +1,21 @@
+<section class="section section--tight long-form">
+  <div class="container">
+    <div class="prose long-form__prose">
+      {{ section.settings.body }}
+    </div>
+  </div>
+</section>
+
+<style>
+  .long-form__prose { margin-inline: auto; }
+</style>
+
+{% schema %}
+{
+  "name": "Long-form prose",
+  "settings": [
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>Maison began with a single vial of vetiver oil, a stone bench in the south of France, and a stubborn belief that the bottle should disappear behind the scent.</p><p>Today, the house composes in small batches, refusing the fashion of shouting top notes for the slow architecture of base.</p>" }
+  ],
+  "presets": [{ "name": "Long-form prose" }]
+}
+{% endschema %}

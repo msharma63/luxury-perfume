@@ -1,0 +1,207 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Maison — Luxury Perfume",
+    "theme_version": "0.1.0",
+    "theme_author": "Maison Studio",
+    "theme_documentation_url": "https://shopify.dev/themes",
+    "theme_support_url": "https://shopify.dev/themes"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 80,
+        "max": 240,
+        "step": 10,
+        "unit": "px",
+        "label": "Logo width",
+        "default": 160
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "text",
+        "id": "social_handle",
+        "label": "Default social handle",
+        "default": "@maison"
+      }
+    ]
+  },
+  {
+    "name": "Colours",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Discipline: champagne is for accents and hover only — never large surfaces."
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "Ink (primary text + CTA)",
+        "default": "#0E0E0C"
+      },
+      {
+        "type": "color",
+        "id": "color_paper",
+        "label": "Paper (primary background)",
+        "default": "#FAF7F2"
+      },
+      {
+        "type": "color",
+        "id": "color_paper_alt",
+        "label": "Paper alt (section banding)",
+        "default": "#F1ECE3"
+      },
+      {
+        "type": "color",
+        "id": "color_champagne",
+        "label": "Champagne (accent)",
+        "default": "#C9A96E"
+      },
+      {
+        "type": "color",
+        "id": "color_champagne_deep",
+        "label": "Champagne deep (hover)",
+        "default": "#A8884F"
+      },
+      {
+        "type": "color",
+        "id": "color_smoke",
+        "label": "Smoke (secondary text)",
+        "default": "#6B6862"
+      },
+      {
+        "type": "color",
+        "id": "color_hairline",
+        "label": "Hairline (dividers, borders)",
+        "default": "#E4DFD4"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "label": "Display serif",
+        "default": "italiana_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "UI sans",
+        "default": "inter_n4"
+      },
+      {
+        "type": "header",
+        "content": "Italiana for display only. Inter for everything UI — buy box, navigation, forms, accounts."
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1200,
+        "max": 1600,
+        "step": 40,
+        "unit": "px",
+        "label": "Container max width",
+        "default": 1440
+      },
+      {
+        "type": "range",
+        "id": "section_padding",
+        "min": 64,
+        "max": 200,
+        "step": 8,
+        "unit": "px",
+        "label": "Section vertical padding (desktop)",
+        "default": 144
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "social_pinterest_link",
+        "label": "Pinterest URL"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok_link",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube_link",
+        "label": "YouTube URL"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_cart_note",
+        "label": "Enable order notes",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart presentation",
+        "options": [
+          { "value": "drawer", "label": "Drawer" },
+          { "value": "page", "label": "Page" }
+        ],
+        "default": "drawer"
+      }
+    ]
+  },
+  {
+    "name": "Search",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "predictive_search_enabled",
+        "label": "Enable predictive search",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_vendor",
+        "label": "Show vendor in predictive search",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_show_price",
+        "label": "Show price in predictive search",
+        "default": true
+      }
+    ]
+  }
+]

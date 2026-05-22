@@ -1,0 +1,45 @@
+{%- comment -%}
+  Renders a product card.
+  Accepts: product (required), show_family (optional, default true)
+{%- endcomment -%}
+
+{%- if show_family == nil -%}{%- assign show_family = true -%}{%- endif -%}
+
+<a href="{{ product.url }}" class="product-card">
+  <div class="product-card__media">
+    {%- if product.tags contains 'new' -%}
+      <span class="product-card__tag">{{ 'products.product.tag_new' | t }}</span>
+    {%- elsif product.tags contains 'limited' -%}
+      <span class="product-card__tag">{{ 'products.product.tag_limited' | t }}</span>
+    {%- endif -%}
+
+    {%- if product.featured_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 600 }}"
+        srcset="{{ product.featured_image | image_url: width: 400 }} 400w, {{ product.featured_image | image_url: width: 600 }} 600w, {{ product.featured_image | image_url: width: 900 }} 900w"
+        sizes="(min-width: 990px) 33vw, 50vw"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        width="{{ product.featured_image.width }}"
+        height="{{ product.featured_image.height }}"
+        loading="lazy">
+    {%- else -%}
+      <div class="product-card__placeholder"></div>
+    {%- endif -%}
+  </div>
+
+  <div class="product-card__body">
+    {%- if show_family and product.metafields.custom.olfactory_family -%}
+      <p class="product-card__eyebrow">{{ product.metafields.custom.olfactory_family }}</p>
+    {%- endif -%}
+
+    <h3 class="product-card__title">{{ product.title }}</h3>
+
+    <p class="product-card__price">
+      {%- if product.price_varies -%}
+        {{ 'products.product.from_lowest_price_html' | t: lowest_price: product.price_min | money }}
+      {%- else -%}
+        {{ product.price | money }}
+      {%- endif -%}
+    </p>
+  </div>
+</a>

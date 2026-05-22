@@ -1,0 +1,53 @@
+{%- if product.metafields.custom.inspiration -%}
+  <section class="section product-story">
+    <div class="container">
+      <div class="split split--equal {% if section.settings.reverse %}split--reverse{% endif %}">
+        <div class="product-story__media">
+          {%- assign story_image = section.settings.image | default: product.media[1] -%}
+          {%- if story_image -%}
+            <img
+              src="{{ story_image | image_url: width: 1200 }}"
+              alt="{{ product.title | escape }}"
+              loading="lazy"
+              width="600"
+              height="750">
+          {%- else -%}
+            <div class="product-story__placeholder"></div>
+          {%- endif -%}
+        </div>
+
+        <div class="product-story__copy">
+          <div class="prose">
+            {%- if section.settings.eyebrow != blank -%}
+              <p class="t-eyebrow">{{ section.settings.eyebrow }}</p>
+            {%- endif -%}
+            {{ product.metafields.custom.inspiration | metafield_tag }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+<style>
+  .product-story__media img,
+  .product-story__placeholder {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    object-fit: cover;
+    background: var(--paper-alt);
+  }
+
+  .product-story__copy { display: flex; align-items: center; }
+</style>
+
+{% schema %}
+{
+  "name": "Product story",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The composition" },
+    { "type": "image_picker", "id": "image", "label": "Override story image (defaults to product image 2)" },
+    { "type": "checkbox", "id": "reverse", "label": "Reverse layout", "default": false }
+  ]
+}
+{% endschema %}

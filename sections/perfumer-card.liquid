@@ -1,0 +1,52 @@
+{%- assign perfumer = product.metafields.custom.perfumer_page.value -%}
+{%- if perfumer -%}
+  <section class="section section--alt perfumer-card">
+    <div class="container">
+      <div class="perfumer-card__inner">
+        {%- if perfumer.metafields.custom.portrait -%}
+          <div class="perfumer-card__portrait">
+            <img src="{{ perfumer.metafields.custom.portrait | image_url: width: 600 }}" alt="{{ perfumer.title | escape }}" loading="lazy" width="240" height="300">
+          </div>
+        {%- endif -%}
+        <div class="perfumer-card__body">
+          <p class="t-eyebrow">{{ section.settings.eyebrow }}</p>
+          <h2 class="t-h2 perfumer-card__name">{{ perfumer.title }}</h2>
+          {%- if perfumer.content != blank -%}
+            <div class="perfumer-card__bio">{{ perfumer.content | strip_html | truncatewords: 60 }}</div>
+          {%- endif -%}
+          <a href="{{ perfumer.url }}" class="btn--inline">{{ section.settings.cta_text }} {% render 'icon', name: 'arrow-right' %}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+<style>
+  .perfumer-card__inner {
+    display: grid;
+    gap: var(--space-5);
+    align-items: center;
+    max-width: 880px;
+    margin-inline: auto;
+  }
+
+  @media (min-width: 750px) {
+    .perfumer-card__inner { grid-template-columns: 240px 1fr; gap: var(--space-6); }
+  }
+
+  .perfumer-card__portrait img { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; }
+
+  .perfumer-card__name { margin-block: var(--space-2) var(--space-3); }
+
+  .perfumer-card__bio { font-size: 16px; line-height: var(--lh-body); margin-bottom: var(--space-4); color: var(--smoke); }
+</style>
+
+{% schema %}
+{
+  "name": "Perfumer card",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The perfumer" },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Read the profile" }
+  ]
+}
+{% endschema %}

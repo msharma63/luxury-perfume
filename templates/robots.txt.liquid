@@ -1,0 +1,12 @@
+{%- liquid
+  for group in robots.default_groups
+    echo group.user_agent
+    for rule in group.rules
+      echo rule
+    endfor
+    if group.sitemap != blank
+      echo group.sitemap
+    endif
+    echo ''
+  endfor
+-%}

@@ -1,0 +1,68 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-fullbleed",
+      "settings": {
+        "eyebrow": "The new fragrance",
+        "heading": "Vélin Noir",
+        "subheading": "An accord of oud, iris and bitter orange — composed for the long evening.",
+        "cta_text": "Discover",
+        "cta_link": "/products/velin-noir",
+        "text_color": "#FAF7F2"
+      }
+    },
+    "featured": {
+      "type": "featured-fragrance",
+      "settings": {
+        "eyebrow": "Composition no. 7",
+        "heading": "An ode to bergamot and ash",
+        "body": "<p>From the first note to the long, unfolding base, this composition was built around a single memory of citrus burnt by the August sun.</p>",
+        "cta_text": "Explore the fragrance",
+        "reverse": false
+      }
+    },
+    "families": {
+      "type": "family-tiles",
+      "settings": {
+        "eyebrow": "Olfactory families",
+        "heading": "Find your accord"
+      },
+      "blocks": {
+        "floral": { "type": "tile", "settings": { "title": "Floral", "description": "Iris, rose, jasmine — composed with restraint.", "link": "/collections/floral" } },
+        "woody": { "type": "tile", "settings": { "title": "Woody", "description": "Cedar, vetiver, oud — grounded and slow.", "link": "/collections/woody" } },
+        "oriental": { "type": "tile", "settings": { "title": "Oriental", "description": "Amber, resin, spice — warmth as architecture.", "link": "/collections/oriental" } },
+        "fresh": { "type": "tile", "settings": { "title": "Fresh", "description": "Bergamot, neroli, sea salt — the first hour of light.", "link": "/collections/fresh" } }
+      },
+      "block_order": ["floral", "woody", "oriental", "fresh"]
+    },
+    "story": {
+      "type": "editorial-split",
+      "settings": {
+        "eyebrow": "The house",
+        "heading": "A small atelier in the 6th",
+        "body": "<p>Each composition begins as a phrase scribbled on the back of an envelope, lived with for months before it ever reaches a vial. We make small batches, by hand, in Paris.</p>",
+        "cta_text": "Read the story",
+        "cta_link": "/pages/the-house",
+        "reverse": true
+      }
+    },
+    "journal": {
+      "type": "journal-teaser",
+      "settings": {
+        "eyebrow": "The Journal",
+        "heading": "Notes from the atelier",
+        "link_text": "Read all",
+        "blog": "journal"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "eyebrow": "Correspondence",
+        "heading": "Letters from the atelier",
+        "subheading": "Occasional notes — new compositions, ingredient stories, private launches."
+      }
+    }
+  },
+  "order": ["hero", "featured", "families", "story", "journal", "newsletter"]
+}

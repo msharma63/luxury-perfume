@@ -1,0 +1,45 @@
+<section class="section">
+  <div class="container contact-page">
+    <header class="contact-page__head">
+      <p class="t-eyebrow">{{ 'templates.contact.page_eyebrow' | t }}</p>
+      <h1 class="t-h1">{{ page.title }}</h1>
+      {%- if page.content != blank -%}<div class="contact-page__intro">{{ page.content }}</div>{%- endif -%}
+    </header>
+
+    {% form 'contact', class: 'contact-page__form' %}
+      {%- if form.posted_successfully? -%}
+        <p class="t-display contact-page__success">{{ 'templates.contact.form.post_success' | t }}</p>
+      {%- else -%}
+        <div class="contact-page__row">
+          <label class="field">
+            <span class="field__label">{{ 'templates.contact.form.name' | t }}</span>
+            <input type="text" name="contact[name]" class="field__input" required>
+          </label>
+          <label class="field">
+            <span class="field__label">{{ 'templates.contact.form.email' | t }}</span>
+            <input type="email" name="contact[email]" class="field__input" required>
+          </label>
+        </div>
+        <label class="field">
+          <span class="field__label">{{ 'templates.contact.form.message' | t }}</span>
+          <textarea name="contact[body]" class="field__textarea" required></textarea>
+        </label>
+        <button type="submit" class="btn">{{ 'templates.contact.form.send' | t }}</button>
+      {%- endif -%}
+    {% endform %}
+  </div>
+</section>
+
+<style>
+  .contact-page { max-width: 640px; margin-inline: auto; }
+  .contact-page__head { text-align: center; padding-block: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); align-items: center; }
+  .contact-page__intro { color: var(--smoke); }
+  .contact-page__form { display: grid; gap: var(--space-4); }
+  .contact-page__row { display: grid; gap: var(--space-4); }
+  @media (min-width: 750px) { .contact-page__row { grid-template-columns: 1fr 1fr; } }
+  .contact-page__success { font-size: 28px; text-align: center; padding-block: var(--space-6); }
+</style>
+
+{% schema %}
+{ "name": "Contact form", "settings": [] }
+{% endschema %}

@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "main": { "type": "product-main", "settings": {} },
+    "pyramid": { "type": "note-pyramid", "settings": {} },
+    "story": { "type": "product-story", "settings": { "eyebrow": "The composition", "reverse": false } },
+    "perfumer": { "type": "perfumer-card", "settings": { "eyebrow": "The perfumer", "cta_text": "Read the profile" } },
+    "pairings": { "type": "pairings", "settings": { "eyebrow": "Pairings", "heading": "From the same hand" } }
+  },
+  "order": ["main", "pyramid", "story", "perfumer", "pairings"]
+}

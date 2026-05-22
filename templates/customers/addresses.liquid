@@ -1,0 +1,36 @@
+<section class="section">
+  <div class="container account-page">
+    <header class="collection-page__head">
+      <p class="t-eyebrow">Account</p>
+      <h1 class="t-h1">Addresses</h1>
+    </header>
+
+    {% paginate customer.addresses by 5 %}
+      <ul class="addresses-list">
+        {%- for address in customer.addresses -%}
+          <li class="addresses-list__item">
+            {%- if address == customer.default_address -%}
+              <p class="t-eyebrow">Default</p>
+            {%- endif -%}
+            <p>{{ address | format_address }}</p>
+            <p class="t-small">
+              <a href="#edit-{{ address.id }}" class="btn--inline">Edit</a>
+              ·
+              <a href="#delete-{{ address.id }}" class="btn--inline" data-address-delete="{{ address.url }}" data-address-confirm="Delete this address?">Delete</a>
+            </p>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {{ paginate | default_pagination }}
+    {% endpaginate %}
+
+    <p style="margin-top:var(--space-5);"><a href="{{ routes.account_url }}" class="btn--inline">Return to account</a></p>
+  </div>
+</section>
+
+<style>
+  .account-page { max-width: 720px; margin-inline: auto; }
+  .addresses-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-4); }
+  .addresses-list__item { padding-block: var(--space-3); border-bottom: var(--hairline-w) solid var(--hairline); }
+</style>

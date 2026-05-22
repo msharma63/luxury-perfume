@@ -1,0 +1,40 @@
+<section class="section image-pair">
+  <div class="container">
+    <div class="image-pair__grid">
+      {%- if section.settings.image_one -%}
+        <figure class="image-pair__item">
+          <img src="{{ section.settings.image_one | image_url: width: 1200 }}" alt="{{ section.settings.image_one.alt | escape }}" loading="lazy" width="600" height="750">
+          {%- if section.settings.caption_one != blank -%}<figcaption class="t-small">{{ section.settings.caption_one }}</figcaption>{%- endif -%}
+        </figure>
+      {%- endif -%}
+      {%- if section.settings.image_two -%}
+        <figure class="image-pair__item image-pair__item--offset">
+          <img src="{{ section.settings.image_two | image_url: width: 1200 }}" alt="{{ section.settings.image_two.alt | escape }}" loading="lazy" width="600" height="750">
+          {%- if section.settings.caption_two != blank -%}<figcaption class="t-small">{{ section.settings.caption_two }}</figcaption>{%- endif -%}
+        </figure>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+<style>
+  .image-pair__grid { display: grid; gap: var(--space-5); }
+  @media (min-width: 750px) { .image-pair__grid { grid-template-columns: 1fr 1fr; gap: var(--space-6); } }
+  .image-pair__item { margin: 0; }
+  .image-pair__item img { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; }
+  .image-pair__item figcaption { margin-top: var(--space-2); color: var(--smoke); }
+  @media (min-width: 750px) { .image-pair__item--offset { margin-top: var(--space-6); } }
+</style>
+
+{% schema %}
+{
+  "name": "Image pair",
+  "settings": [
+    { "type": "image_picker", "id": "image_one", "label": "Image one" },
+    { "type": "text", "id": "caption_one", "label": "Caption one" },
+    { "type": "image_picker", "id": "image_two", "label": "Image two" },
+    { "type": "text", "id": "caption_two", "label": "Caption two" }
+  ],
+  "presets": [{ "name": "Image pair" }]
+}
+{% endschema %}

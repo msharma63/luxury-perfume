@@ -1,0 +1,240 @@
+<header-menu class="header" role="banner">
+  <div class="container header__inner">
+    <button
+      class="header__icon header__menu-toggle"
+      type="button"
+      aria-label="{{ 'accessibility.menu' | t }}"
+      data-menu-toggle
+    >
+      <span class="header__menu-bars" aria-hidden="true"></span>
+    </button>
+
+    <a href="{{ routes.root_url }}" class="header__logo" aria-label="{{ shop.name }}">
+      {%- if settings.logo != blank -%}
+        {{ settings.logo | image_url: width: settings.logo_width | image_tag:
+          loading: 'eager',
+          width: settings.logo_width,
+          alt: shop.name
+        }}
+      {%- else -%}
+        <span class="header__wordmark">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    <nav class="header__nav" aria-label="Primary">
+      <ul class="header__nav-list">
+        {%- for link in linklists.main-menu.links -%}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <a href="{{ routes.search_url }}" class="header__icon" aria-label="{{ 'general.search.search' | t }}">
+        {% render 'icon', name: 'search' %}
+      </a>
+      <a href="{{ routes.account_url }}" class="header__icon" aria-label="{{ 'customer.account.title' | t }}">
+        {% render 'icon', name: 'account' %}
+      </a>
+      <button type="button" class="header__icon header__cart" data-cart-open aria-label="{{ 'cart.general.title' | t }}">
+        {% render 'icon', name: 'bag' %}
+        <span class="header__cart-count" data-cart-count>{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="header__panel" data-menu-panel>
+    <nav class="header__panel-nav" aria-label="Mobile primary">
+      <ul>
+        {%- for link in linklists.main-menu.links -%}
+          <li><a href="{{ link.url }}" class="t-display">{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+    <div class="header__panel-foot">
+      <a href="{{ routes.account_url }}">{{ 'customer.account.title' | t }}</a>
+      <a href="{{ routes.search_url }}">{{ 'general.search.search' | t }}</a>
+    </div>
+  </div>
+</header-menu>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-header);
+    background: var(--paper);
+    border-bottom: var(--hairline-w) solid var(--hairline);
+  }
+
+  .header__inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    height: 80px;
+    gap: var(--space-4);
+  }
+
+  .header__logo {
+    justify-self: center;
+    font-family: var(--font-display);
+    font-size: 26px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .header__wordmark {
+    text-transform: uppercase;
+    font-size: 18px;
+    letter-spacing: 0.22em;
+  }
+
+  .header__logo img {
+    max-height: 40px;
+    width: auto;
+  }
+
+  .header__nav {
+    grid-column: 1;
+    display: none;
+  }
+
+  @media (min-width: 990px) {
+    .header__nav {
+      display: block;
+      justify-self: start;
+    }
+
+    .header__nav-list {
+      display: flex;
+      gap: var(--space-5);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header__nav-list a {
+      font-size: var(--type-small);
+      letter-spacing: var(--ls-meta);
+      text-transform: uppercase;
+    }
+  }
+
+  .header__actions {
+    grid-column: 3;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .header__icon {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .header__menu-toggle {
+    grid-column: 1;
+    justify-self: start;
+  }
+
+  @media (min-width: 990px) {
+    .header__menu-toggle {
+      display: none;
+    }
+  }
+
+  .header__menu-bars,
+  .header__menu-bars::before,
+  .header__menu-bars::after {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .header__menu-bars::before,
+  .header__menu-bars::after {
+    content: '';
+    position: relative;
+  }
+
+  .header__menu-bars::before { top: -7px; }
+  .header__menu-bars::after  { top: 6px; }
+
+  .header__cart-count {
+    position: absolute;
+    top: 6px;
+    right: 4px;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+
+  .header__cart-count:empty,
+  .header__cart-count[data-cart-count='0'] {
+    display: none;
+  }
+
+  .header__panel {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--paper);
+    transform: translateY(-100%);
+    transition: transform var(--transition-slow);
+    pointer-events: none;
+    overflow-y: auto;
+  }
+
+  header-menu[open] .header__panel {
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  @media (min-width: 990px) {
+    .header__panel { display: none; }
+  }
+
+  .header__panel-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--space-6) var(--gutter);
+  }
+
+  .header__panel-nav li + li {
+    margin-top: var(--space-3);
+  }
+
+  .header__panel-nav a {
+    font-size: 40px;
+    line-height: 1.1;
+  }
+
+  .header__panel-foot {
+    border-top: var(--hairline-w) solid var(--hairline);
+    padding: var(--space-4) var(--gutter);
+    display: flex;
+    gap: var(--space-5);
+    font-size: var(--type-small);
+    text-transform: uppercase;
+    letter-spacing: var(--ls-meta);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Configure the menu in Online Store → Navigation. Use the menu handle 'main-menu'."
+    }
+  ]
+}
+{% endschema %}

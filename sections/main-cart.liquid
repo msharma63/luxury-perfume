@@ -1,0 +1,78 @@
+<section class="section">
+  <div class="container cart-page">
+    <header class="collection-page__head">
+      <h1 class="t-h1">{{ 'cart.general.title' | t }}</h1>
+    </header>
+
+    {%- if cart.item_count == 0 -%}
+      <div class="cart-empty">
+        <p class="t-display" style="font-size:32px;">{{ 'cart.general.empty' | t }}</p>
+        <a href="{{ routes.collections_url }}/all" class="btn">{{ 'cart.general.continue_shopping' | t }}</a>
+      </div>
+    {%- else -%}
+      <form action="{{ routes.cart_url }}" method="post" class="cart-form">
+        <ul class="cart-page__items">
+          {%- for item in cart.items -%}
+            <li class="cart-page__row">
+              <a href="{{ item.url }}" class="cart-page__media">
+                {%- if item.image -%}
+                  <img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.image.alt | escape }}" width="120" height="150" loading="lazy">
+                {%- endif -%}
+              </a>
+              <div class="cart-page__details">
+                <a href="{{ item.url }}" class="cart-page__title">{{ item.product.title }}</a>
+                {%- unless item.variant.title contains 'Default' -%}
+                  <p class="t-small">{{ item.variant.title }}</p>
+                {%- endunless -%}
+                <p class="t-small cart-page__price">{{ item.final_line_price | money }}</p>
+              </div>
+              <div class="cart-page__qty">
+                <label class="visually-hidden" for="updates_{{ item.key }}">Quantity</label>
+                <input type="number" id="updates_{{ item.key }}" name="updates[]" value="{{ item.quantity }}" min="0" class="field__input" style="width:80px; height:44px;">
+                <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" class="t-small btn--inline">{{ 'cart.general.remove' | t }}</a>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        <footer class="cart-page__foot">
+          <div>
+            <span class="t-eyebrow">{{ 'cart.general.subtotal' | t }}</span>
+            <span class="t-display cart-page__subtotal">{{ cart.total_price | money }}</span>
+          </div>
+          <p class="t-small">{{ 'cart.general.taxes_and_shipping_at_checkout' | t }}</p>
+          <div class="cart-page__actions">
+            <button type="submit" name="update" class="btn btn--ghost">Update</button>
+            <button type="submit" name="checkout" class="btn">{{ 'cart.general.checkout' | t }}</button>
+          </div>
+        </footer>
+      </form>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .cart-empty { text-align: center; padding-block: var(--space-7); display: flex; flex-direction: column; gap: var(--space-4); align-items: center; }
+
+  .cart-page__items { list-style: none; margin: 0; padding: 0; border-top: var(--hairline-w) solid var(--hairline); }
+
+  .cart-page__row { display: grid; grid-template-columns: 120px 1fr auto; gap: var(--space-4); padding-block: var(--space-4); border-bottom: var(--hairline-w) solid var(--hairline); align-items: center; }
+
+  .cart-page__media img { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; background: var(--paper-alt); }
+
+  .cart-page__title { font-family: var(--font-display); font-size: 22px; line-height: 1.1; }
+
+  .cart-page__price { margin-top: var(--space-2); }
+
+  .cart-page__qty { display: flex; flex-direction: column; gap: var(--space-2); align-items: flex-end; }
+
+  .cart-page__foot { margin-top: var(--space-5); text-align: right; display: flex; flex-direction: column; gap: var(--space-3); align-items: flex-end; }
+
+  .cart-page__subtotal { font-size: 32px; margin-left: var(--space-3); }
+
+  .cart-page__actions { display: flex; gap: var(--space-3); }
+</style>
+
+{% schema %}
+{ "name": "Cart", "settings": [] }
+{% endschema %}

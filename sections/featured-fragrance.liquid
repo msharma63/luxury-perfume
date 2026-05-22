@@ -1,0 +1,83 @@
+<section class="section featured-fragrance">
+  <div class="container">
+    <div class="split {% if section.settings.reverse %}split--reverse{% endif %}">
+      <div class="featured-fragrance__media">
+        {%- if section.settings.image -%}
+          <img
+            src="{{ section.settings.image | image_url: width: 1200 }}"
+            srcset="{{ section.settings.image | image_url: width: 600 }} 600w, {{ section.settings.image | image_url: width: 1200 }} 1200w"
+            sizes="(min-width: 990px) 60vw, 100vw"
+            alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}"
+            loading="lazy">
+        {%- elsif section.settings.product != blank -%}
+          {%- assign product = all_products[section.settings.product] -%}
+          <img
+            src="{{ product.featured_image | image_url: width: 1200 }}"
+            alt="{{ product.title | escape }}"
+            width="600"
+            height="750"
+            loading="lazy">
+        {%- else -%}
+          <div class="featured-fragrance__placeholder"></div>
+        {%- endif -%}
+      </div>
+
+      <div class="featured-fragrance__copy">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="t-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="t-h1 featured-fragrance__heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.body != blank -%}
+          <div class="featured-fragrance__body">{{ section.settings.body }}</div>
+        {%- endif -%}
+        {%- if section.settings.cta_text != blank -%}
+          <a
+            href="{%- if section.settings.product != blank -%}{{ all_products[section.settings.product].url }}{%- else -%}{{ section.settings.cta_link }}{%- endif -%}"
+            class="btn--inline">
+            {{ section.settings.cta_text }}
+            {% render 'icon', name: 'arrow-right' %}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .featured-fragrance__media img,
+  .featured-fragrance__placeholder {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    object-fit: cover;
+    background: var(--paper-alt);
+  }
+
+  .featured-fragrance__heading { margin-block: var(--space-3) var(--space-4); }
+
+  .featured-fragrance__body { font-size: 17px; line-height: var(--lh-body); margin-bottom: var(--space-5); max-width: 460px; }
+
+  .featured-fragrance__body p { margin: 0 0 1em; }
+</style>
+
+{% schema %}
+{
+  "name": "Featured fragrance",
+  "settings": [
+    { "type": "product", "id": "product", "label": "Featured product (optional — uses its image if no image picked)" },
+    { "type": "image_picker", "id": "image", "label": "Image (overrides product image)" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Composition no. 7" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "An ode to bergamot and ash" },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>From the first note to the long, unfolding base, this composition was built around a single memory of citrus burnt by the August sun.</p>" },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Explore the fragrance" },
+    { "type": "url", "id": "cta_link", "label": "CTA link (used if no product is set)" },
+    { "type": "checkbox", "id": "reverse", "label": "Reverse layout", "default": false }
+  ],
+  "presets": [
+    { "name": "Featured fragrance" }
+  ]
+}
+{% endschema %}

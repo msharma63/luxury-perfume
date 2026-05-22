@@ -1,0 +1,201 @@
+<section class="section--tight collection-page">
+  <div class="container">
+    <header class="collection-page__head">
+      {%- if collection.image -%}
+        <p class="t-eyebrow">{{ 'general.breadcrumbs.home' | t }} / {{ collection.title }}</p>
+      {%- endif -%}
+      <h1 class="t-h1 collection-page__title">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="collection-page__description">{{ collection.description }}</div>
+      {%- endif -%}
+    </header>
+
+    <div class="collection-page__layout">
+      <aside class="collection-page__filters">
+        <facet-filters>
+          {%- if collection.filters.size > 0 -%}
+            <form id="CollectionFiltersForm">
+              <details class="disclosure" open>
+                <summary class="disclosure__summary">{{ 'products.facets.filter_by_label' | t }}</summary>
+                <div class="disclosure__body">
+                  {%- for filter in collection.filters -%}
+                    <fieldset class="filter-group">
+                      <legend class="t-eyebrow">{{ filter.label }}</legend>
+                      {%- case filter.type -%}
+                        {%- when 'list', 'boolean' -%}
+                          <ul class="filter-list">
+                            {%- for value in filter.values -%}
+                              <li>
+                                <label class="filter-option">
+                                  <input
+                                    type="checkbox"
+                                    name="{{ value.param_name }}"
+                                    value="{{ value.value }}"
+                                    {% if value.active %}checked{% endif %}
+                                    {% if value.count == 0 and value.active == false %}disabled{% endif %}>
+                                  <span>{{ value.label }} <em class="t-small">({{ value.count }})</em></span>
+                                </label>
+                              </li>
+                            {%- endfor -%}
+                          </ul>
+                        {%- when 'price_range' -%}
+                          <div class="filter-price">
+                            <label class="t-small">{{ 'products.facets.from' | t }}
+                              <input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value }}" min="0" placeholder="0">
+                            </label>
+                            <label class="t-small">{{ 'products.facets.to' | t }}
+                              <input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value }}" min="0" placeholder="{{ filter.range_max | money_without_currency }}">
+                            </label>
+                          </div>
+                      {%- endcase -%}
+                    </fieldset>
+                  {%- endfor -%}
+
+                  <div class="filter-actions">
+                    <button type="submit" class="btn btn--small">{{ 'products.facets.apply' | t }}</button>
+                    {%- if collection.url -%}
+                      <a href="{{ collection.url }}" class="btn--inline t-small">{{ 'products.facets.clear_all' | t }}</a>
+                    {%- endif -%}
+                  </div>
+                </div>
+              </details>
+            </form>
+          {%- endif -%}
+        </facet-filters>
+      </aside>
+
+      <div class="collection-page__main">
+        <div class="collection-page__bar">
+          <p class="t-small">
+            {{ 'products.facets.results_count' | t: count: collection.products_count, total: collection.products_count }}
+          </p>
+
+          <form class="collection-page__sort">
+            <label for="SortBy" class="t-small">{{ 'products.facets.sort_by_label' | t }}</label>
+            <select id="SortBy" name="sort_by" onchange="this.form.submit()">
+              {%- for option in collection.sort_options -%}
+                <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
+              {%- endfor -%}
+            </select>
+          </form>
+        </div>
+
+        {%- if collection.products.size > 0 -%}
+          {%- paginate collection.products by section.settings.products_per_page -%}
+            <div class="grid grid--products">
+              {%- for product in collection.products -%}
+                {% render 'product-card', product: product %}
+              {%- endfor -%}
+            </div>
+
+            {%- if paginate.pages > 1 -%}
+              <nav class="pagination" aria-label="Pagination">
+                {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}">{{ 'general.pagination.previous' | t }}</a>{%- endif -%}
+                {%- for part in paginate.parts -%}
+                  {%- if part.is_link -%}<a href="{{ part.url }}">{{ part.title }}</a>{%- elsif part.title == paginate.current_page -%}<span aria-current="page">{{ part.title }}</span>{%- else -%}<span>{{ part.title }}</span>{%- endif -%}
+                {%- endfor -%}
+                {%- if paginate.next -%}<a href="{{ paginate.next.url }}">{{ 'general.pagination.next' | t }}</a>{%- endif -%}
+              </nav>
+            {%- endif -%}
+          {%- endpaginate -%}
+        {%- else -%}
+          <p class="t-display" style="font-size:28px; padding-block: var(--space-6);">{{ 'templates.collection.empty' | t }}</p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .collection-page__head {
+    text-align: center;
+    padding-block: var(--space-6) var(--space-7);
+    max-width: 720px;
+    margin-inline: auto;
+  }
+
+  .collection-page__title { margin-block: var(--space-3); }
+
+  .collection-page__description { color: var(--smoke); font-size: 17px; }
+
+  .collection-page__layout {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 990px) {
+    .collection-page__layout { grid-template-columns: 240px 1fr; gap: var(--space-6); }
+  }
+
+  .collection-page__filters details { border-bottom: 0; }
+
+  .filter-group {
+    border: 0;
+    margin: 0 0 var(--space-4);
+    padding: 0;
+  }
+
+  .filter-group legend { display: block; margin-bottom: var(--space-2); }
+
+  .filter-list { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+
+  .filter-option { display: flex; align-items: center; gap: var(--space-2); cursor: pointer; font-size: 14px; }
+
+  .filter-option em { color: var(--smoke); font-style: normal; }
+
+  .filter-price { display: flex; gap: var(--space-2); }
+
+  .filter-price label { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+
+  .filter-price input { height: 40px; padding: 0 var(--space-2); border: var(--hairline-w) solid var(--hairline); background: transparent; }
+
+  .filter-actions { display: flex; gap: var(--space-3); align-items: center; margin-top: var(--space-4); }
+
+  .collection-page__bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--space-4);
+    border-bottom: var(--hairline-w) solid var(--hairline);
+    margin-bottom: var(--space-5);
+  }
+
+  .collection-page__sort select {
+    border: 0;
+    background: transparent;
+    font-family: var(--font-sans);
+    font-size: var(--type-small);
+    letter-spacing: var(--ls-meta);
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+    font-size: var(--type-small);
+    letter-spacing: var(--ls-meta);
+    text-transform: uppercase;
+  }
+
+  .pagination [aria-current='page'] { color: var(--ink); border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+</style>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 6,
+      "max": 36,
+      "step": 3,
+      "label": "Products per page",
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

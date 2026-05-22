@@ -1,0 +1,78 @@
+{%- liquid
+  if template.name == 'product'
+    assign og_title = product.title
+    assign og_description = product.description | strip_html | truncate: 200
+    assign og_image = product.featured_media | default: product.featured_image
+    assign og_type = 'product'
+  elsif template.name == 'article'
+    assign og_title = article.title
+    assign og_description = article.excerpt | default: article.content | strip_html | truncate: 200
+    assign og_image = article.image
+    assign og_type = 'article'
+  else
+    assign og_title = page_title
+    assign og_description = page_description | default: shop.description
+    assign og_image = page_image | default: settings.logo
+    assign og_type = 'website'
+  endif
+-%}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ og_title | escape }}">
+<meta property="og:type" content="{{ og_type }}">
+{%- if og_description -%}
+  <meta property="og:description" content="{{ og_description | escape }}">
+{%- endif -%}
+{%- if og_image -%}
+  <meta property="og:image" content="https:{{ og_image | image_url: width: 1200 }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+{%- endif -%}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="{{ settings.social_handle }}">
+
+{%- if template.name == 'product' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": {{ product.title | json }},
+      "image": [{{ product.featured_image | image_url: width: 1200 | prepend: 'https:' | json }}],
+      "description": {{ product.description | strip_html | truncate: 500 | json }},
+      "brand": { "@type": "Brand", "name": {{ product.vendor | default: shop.name | json }} },
+      "sku": {{ product.selected_or_first_available_variant.sku | json }},
+      "offers": {
+        "@type": "Offer",
+        "url": {{ shop.url | append: product.url | json }},
+        "priceCurrency": {{ cart.currency.iso_code | json }},
+        "price": {{ product.price | divided_by: 100.0 | json }},
+        "availability": {%- if product.available -%}"https://schema.org/InStock"{%- else -%}"https://schema.org/OutOfStock"{%- endif -%}
+      }
+    }
+  </script>
+{%- elsif template.name == 'article' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Article",
+      "headline": {{ article.title | json }},
+      "image": [{{ article.image | image_url: width: 1200 | prepend: 'https:' | json }}],
+      "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+      "author": { "@type": "Person", "name": {{ article.author | json }} }
+    }
+  </script>
+{%- elsif template.name == 'index' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Organization",
+      "name": {{ shop.name | json }},
+      "url": {{ shop.url | json }}
+      {%- if settings.logo -%},
+      "logo": {{ settings.logo | image_url: width: 400 | prepend: 'https:' | json }}
+      {%- endif -%}
+    }
+  </script>
+{%- endif -%}

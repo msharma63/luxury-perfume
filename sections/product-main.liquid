@@ -1,0 +1,179 @@
+<section class="pdp">
+  <div class="container">
+    <div class="pdp__layout">
+      <product-gallery class="pdp__gallery">
+        {%- for media in product.media -%}
+          <figure class="pdp__media" data-media="{{ media.id }}">
+            {%- if media.media_type == 'image' -%}
+              <img
+                src="{{ media | image_url: width: 1200 }}"
+                srcset="{{ media | image_url: width: 600 }} 600w, {{ media | image_url: width: 1200 }} 1200w, {{ media | image_url: width: 1800 }} 1800w"
+                sizes="(min-width: 990px) 50vw, 100vw"
+                alt="{{ media.alt | default: product.title | escape }}"
+                width="{{ media.width }}"
+                height="{{ media.height }}"
+                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                {% if forloop.first %}fetchpriority="high"{% endif %}>
+            {%- elsif media.media_type == 'video' -%}
+              {{ media | video_tag: image_size: '1200x', loop: true, muted: true, playsinline: true, autoplay: true }}
+            {%- endif -%}
+          </figure>
+        {%- else -%}
+          <figure class="pdp__media"><div class="pdp__placeholder"></div></figure>
+        {%- endfor -%}
+      </product-gallery>
+
+      <aside class="pdp__buy">
+        <div class="pdp__buy-inner">
+          {%- if product.metafields.custom.olfactory_family -%}
+            <p class="t-eyebrow">{{ product.metafields.custom.olfactory_family }}{%- if product.metafields.custom.concentration -%} · {{ product.metafields.custom.concentration }}{%- endif -%}</p>
+          {%- endif -%}
+
+          <h1 class="t-h1 pdp__title">{{ product.title }}</h1>
+
+          {%- if product.metafields.custom.perfumer_name -%}
+            <p class="pdp__perfumer t-italic">{{ 'products.product.perfumer_label' | t }} {{ product.metafields.custom.perfumer_name }}</p>
+          {%- endif -%}
+
+          {%- if product.description != blank -%}
+            <div class="pdp__lede">{{ product.description }}</div>
+          {%- endif -%}
+
+          <product-form>
+            <form action="{{ routes.cart_add_url }}" method="post" enctype="multipart/form-data" novalidate>
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+              <input type="hidden" name="quantity" value="1">
+
+              {%- if product.has_only_default_variant == false -%}
+                <fieldset class="pdp__variants">
+                  <legend class="t-eyebrow pdp__variants-label">{{ 'products.product.size' | t }}</legend>
+                  <variant-picker class="pill-group">
+                    {%- for variant in product.variants -%}
+                      <button
+                        type="button"
+                        class="pill"
+                        data-variant-id="{{ variant.id }}"
+                        data-variant-price="{{ variant.price | money }}"
+                        data-variant-available="{{ variant.available }}"
+                        aria-checked="{% if variant.id == product.selected_or_first_available_variant.id %}true{% else %}false{% endif %}"
+                        {% unless variant.available %}disabled{% endunless %}>
+                        {{ variant.title }}
+                      </button>
+                    {%- endfor -%}
+                  </variant-picker>
+                </fieldset>
+              {%- endif -%}
+
+              <div class="pdp__price-row">
+                <p class="t-display pdp__price" data-product-price>{{ product.selected_or_first_available_variant.price | money }}</p>
+                {%- if product.compare_at_price > product.price -%}
+                  <p class="t-small pdp__compare"><s>{{ product.compare_at_price | money }}</s></p>
+                {%- endif -%}
+              </div>
+
+              <button
+                type="submit"
+                class="btn btn--full pdp__submit"
+                data-product-submit
+                data-label-default="{{ 'products.product.add_to_cart' | t }}"
+                data-label-sold-out="{{ 'products.product.sold_out' | t }}"
+                {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+                {%- if product.selected_or_first_available_variant.available -%}
+                  {{ 'products.product.add_to_cart' | t }}
+                {%- else -%}
+                  {{ 'products.product.sold_out' | t }}
+                {%- endif -%}
+              </button>
+            </form>
+          </product-form>
+
+          <details class="disclosure pdp__disclosure">
+            <summary class="disclosure__summary">{{ 'products.product.shipping_returns_heading' | t }}</summary>
+            <div class="disclosure__body">{{ 'products.product.shipping_returns_body' | t }}</div>
+          </details>
+
+          {%- if product.metafields.custom.longevity_hours or product.metafields.custom.sillage -%}
+            <details class="disclosure pdp__disclosure">
+              <summary class="disclosure__summary">{{ 'products.product.wear_and_presence_heading' | t }}</summary>
+              <div class="disclosure__body">
+                <ul class="pdp__specs">
+                  {%- if product.metafields.custom.longevity_hours -%}
+                    <li><span class="t-eyebrow">{{ 'products.product.longevity_label' | t }}</span> {{ 'products.product.longevity_hours' | t: hours: product.metafields.custom.longevity_hours }}</li>
+                  {%- endif -%}
+                  {%- if product.metafields.custom.sillage -%}
+                    <li><span class="t-eyebrow">{{ 'products.product.sillage_label' | t }}</span> {{ product.metafields.custom.sillage }}</li>
+                  {%- endif -%}
+                  {%- if product.metafields.custom.year_launched -%}
+                    <li><span class="t-eyebrow">{{ 'products.product.year_label' | t }}</span> {{ product.metafields.custom.year_launched }}</li>
+                  {%- endif -%}
+                </ul>
+              </div>
+            </details>
+          {%- endif -%}
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pdp { padding-block: var(--space-6) var(--space-7); }
+
+  .pdp__layout {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  @media (min-width: 990px) {
+    .pdp__layout { grid-template-columns: 1fr 1fr; gap: var(--space-7); align-items: start; }
+  }
+
+  .pdp__gallery { display: grid; gap: var(--space-3); }
+
+  .pdp__media { margin: 0; }
+
+  .pdp__media img,
+  .pdp__media video,
+  .pdp__placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    background: var(--paper-alt);
+    display: block;
+  }
+
+  @media (min-width: 990px) {
+    .pdp__buy { position: sticky; top: 100px; }
+  }
+
+  .pdp__buy-inner { padding-top: var(--space-3); max-width: 460px; }
+
+  .pdp__title { margin-block: var(--space-2) var(--space-3); }
+
+  .pdp__perfumer { font-size: 18px; color: var(--smoke); margin-bottom: var(--space-4); }
+
+  .pdp__lede { font-size: 17px; line-height: var(--lh-body); margin-bottom: var(--space-5); }
+
+  .pdp__variants { border: 0; padding: 0; margin: 0 0 var(--space-5); }
+
+  .pdp__variants-label { display: block; margin-bottom: var(--space-2); }
+
+  .pdp__price-row { display: flex; align-items: baseline; gap: var(--space-3); margin-bottom: var(--space-4); }
+
+  .pdp__price { font-size: 28px; }
+
+  .pdp__compare { color: var(--smoke); }
+
+  .pdp__submit { margin-bottom: var(--space-4); }
+
+  .pdp__disclosure { margin-top: 0; }
+
+  .pdp__specs { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+</style>
+
+{% schema %}
+{
+  "name": "Product main",
+  "settings": []
+}
+{% endschema %}

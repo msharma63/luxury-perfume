@@ -1,0 +1,32 @@
+<section class="hero-quiet">
+  <div class="container hero-quiet__inner">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="t-eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <h1 class="t-h1 hero-quiet__heading">{{ section.settings.heading }}</h1>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="hero-quiet__sub">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .hero-quiet { padding-block: var(--space-8) var(--space-6); }
+  .hero-quiet__inner { text-align: center; max-width: 720px; margin-inline: auto; display: flex; flex-direction: column; gap: var(--space-3); align-items: center; }
+  .hero-quiet__heading { margin: 0; }
+  .hero-quiet__sub { font-size: 18px; color: var(--smoke); margin: 0; }
+</style>
+
+{% schema %}
+{
+  "name": "Hero — quiet",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The House" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A small atelier" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Composed and bottled by hand. Paris." }
+  ],
+  "presets": [{ "name": "Hero — quiet" }]
+}
+{% endschema %}

@@ -1,0 +1,30 @@
+# Theme Check configuration
+# Run: shopify theme check
+# Docs: https://shopify.dev/themes/tools/theme-check
+
+root: "."
+
+extends: theme-check:recommended
+
+ignore:
+  - node_modules/
+  - .git/
+  - .shopify/
+
+UnusedAssign:
+  enabled: true
+
+UndefinedObject:
+  enabled: true
+
+DeprecatedFilter:
+  enabled: true
+
+ImgWidthAndHeight:
+  enabled: true
+
+ParserBlockingScript:
+  enabled: true
+
+RemoteAsset:
+  enabled: true

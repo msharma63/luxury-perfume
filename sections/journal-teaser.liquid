@@ -1,0 +1,109 @@
+{%- assign blog = blogs[section.settings.blog] -%}
+
+<section class="section journal-teaser">
+  <div class="container">
+    <header class="journal-teaser__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="t-eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="t-h2">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if blog.url != blank -%}
+        <a href="{{ blog.url }}" class="btn--inline">{{ section.settings.link_text }} {% render 'icon', name: 'arrow-right' %}</a>
+      {%- endif -%}
+    </header>
+
+    <ul class="journal-teaser__list">
+      {%- for article in blog.articles limit: 3 -%}
+        <li class="journal-card">
+          <a href="{{ article.url }}">
+            <div class="journal-card__media">
+              {%- if article.image -%}
+                <img
+                  src="{{ article.image | image_url: width: 800 }}"
+                  alt="{{ article.image.alt | default: article.title | escape }}"
+                  width="400"
+                  height="500"
+                  loading="lazy">
+              {%- else -%}
+                <div class="journal-card__placeholder"></div>
+              {%- endif -%}
+            </div>
+            <div class="journal-card__body">
+              {%- if article.tags.size > 0 -%}
+                <p class="t-eyebrow">{{ article.tags | first }}</p>
+              {%- endif -%}
+              <h3 class="t-display journal-card__title">{{ article.title }}</h3>
+              <p class="t-small">{{ article.published_at | date: '%B %Y' }} · {{ article.author }}</p>
+            </div>
+          </a>
+        </li>
+      {%- else -%}
+        <li class="journal-card">
+          <div class="journal-card__media"><div class="journal-card__placeholder"></div></div>
+          <div class="journal-card__body">
+            <p class="t-eyebrow">Notes</p>
+            <h3 class="t-display journal-card__title">A short essay on iris</h3>
+            <p class="t-small">Coming soon</p>
+          </div>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .journal-teaser__head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    align-items: flex-start;
+    margin-bottom: var(--space-6);
+  }
+
+  .journal-teaser__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media (min-width: 750px) {
+    .journal-teaser__list { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .journal-card a { display: block; color: inherit; }
+
+  .journal-card__media {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--paper-alt);
+  }
+
+  .journal-card__media img,
+  .journal-card__placeholder { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-slow); }
+
+  .journal-card a:hover .journal-card__media img { transform: scale(1.04); }
+
+  .journal-card__body { padding-top: var(--space-3); border-top: var(--hairline-w) solid var(--hairline); margin-top: var(--space-3); }
+
+  .journal-card__title { font-size: 24px; line-height: 1.15; margin-block: var(--space-2); }
+</style>
+
+{% schema %}
+{
+  "name": "Journal teaser",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The Journal" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Notes from the atelier" },
+    { "type": "text", "id": "link_text", "label": "Link text", "default": "Read all" },
+    { "type": "blog", "id": "blog", "label": "Blog", "default": "journal" }
+  ],
+  "presets": [
+    { "name": "Journal teaser" }
+  ]
+}
+{% endschema %}

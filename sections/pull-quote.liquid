@@ -1,0 +1,35 @@
+<section class="section section--alt pull-quote">
+  <div class="container">
+    <blockquote class="pull-quote__text">
+      {{ section.settings.quote }}
+    </blockquote>
+    {%- if section.settings.attribution != blank -%}
+      <p class="t-eyebrow pull-quote__attribution">— {{ section.settings.attribution }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .pull-quote { text-align: center; }
+  .pull-quote__text {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 56px);
+    line-height: 1.2;
+    margin: 0 auto var(--space-4);
+    max-width: 880px;
+    border: 0;
+    padding: 0;
+  }
+  .pull-quote__attribution { color: var(--smoke); }
+</style>
+
+{% schema %}
+{
+  "name": "Pull quote",
+  "settings": [
+    { "type": "textarea", "id": "quote", "label": "Quote", "default": "A perfume is a memory bottled before it could be photographed." },
+    { "type": "text", "id": "attribution", "label": "Attribution", "default": "Mathilde Laurent" }
+  ],
+  "presets": [{ "name": "Pull quote" }]
+}
+{% endschema %}

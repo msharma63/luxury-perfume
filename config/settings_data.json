@@ -1,0 +1,56 @@
+{
+  "current": {
+    "logo_width": 160,
+    "social_handle": "@maison",
+    "color_ink": "#0E0E0C",
+    "color_paper": "#FAF7F2",
+    "color_paper_alt": "#F1ECE3",
+    "color_champagne": "#C9A96E",
+    "color_champagne_deep": "#A8884F",
+    "color_smoke": "#6B6862",
+    "color_hairline": "#E4DFD4",
+    "type_header_font": "italiana_n4",
+    "type_body_font": "inter_n4",
+    "page_width": 1440,
+    "section_padding": 144,
+    "show_cart_note": true,
+    "cart_type": "drawer",
+    "predictive_search_enabled": true,
+    "predictive_search_show_vendor": false,
+    "predictive_search_show_price": true,
+    "sections": {
+      "announcement-group": {
+        "type": "announcement-group",
+        "blocks": {
+          "announcement": {
+            "type": "announcement",
+            "settings": {
+              "text": "Complimentary shipping on all orders.",
+              "link": ""
+            }
+          }
+        },
+        "block_order": ["announcement"]
+      },
+      "header-group": {
+        "type": "header-group",
+        "settings": {}
+      },
+      "footer-group": {
+        "type": "footer-group",
+        "settings": {}
+      }
+    },
+    "content_for_index": [
+      "hero-fullbleed",
+      "featured-fragrance",
+      "family-tiles",
+      "editorial-split",
+      "journal-teaser",
+      "newsletter"
+    ]
+  },
+  "presets": {
+    "Maison": {}
+  }
+}

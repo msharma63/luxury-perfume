@@ -1,0 +1,54 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="announcement-bar" role="region" aria-label="Announcement">
+    <div class="announcement-bar__track">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.text != blank -%}
+          <span class="announcement-bar__item" {{ block.shopify_attributes }}>
+            {%- if block.settings.link != blank -%}
+              <a href="{{ block.settings.link }}">{{ block.settings.text }}</a>
+            {%- else -%}
+              {{ block.settings.text }}
+            {%- endif -%}
+          </span>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+  .announcement-bar {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px var(--gutter);
+    text-align: center;
+    font-size: var(--type-eyebrow);
+    letter-spacing: var(--ls-eyebrow);
+    text-transform: uppercase;
+  }
+
+  .announcement-bar a {
+    border-bottom: 1px solid currentColor;
+  }
+
+  .announcement-bar__item + .announcement-bar__item {
+    margin-left: var(--space-5);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Complimentary shipping on all orders." },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ]
+}
+{% endschema %}

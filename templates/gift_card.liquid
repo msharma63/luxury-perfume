@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ shop.name }} — Gift Card</title>
+    <link rel="canonical" href="{{ canonical_url }}">
+    {{ 'tokens.css' | asset_url | stylesheet_tag }}
+    {{ 'components.css' | asset_url | stylesheet_tag }}
+    {{ 'fonts.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+  </head>
+  <body>
+    <main class="gift-card section">
+      <div class="container" style="max-width:520px; text-align:center;">
+        <p class="t-eyebrow">{{ shop.name }}</p>
+        <h1 class="t-h1" style="margin-block:var(--space-3);">Gift Card</h1>
+        <p class="t-display" style="font-size:48px;">{{ gift_card.balance | money }}</p>
+
+        <div class="gift-card__code" style="border:1px solid var(--ink); padding:var(--space-4); margin:var(--space-5) 0; font-family:var(--font-sans); letter-spacing:0.2em; font-size:18px;">
+          {{ gift_card.code | format_code }}
+        </div>
+
+        {%- if gift_card.enabled == false or gift_card.expired -%}
+          <p class="t-small" style="color:var(--error);">Expired on {{ gift_card.expires_on | date: format: 'date' }}</p>
+        {%- elsif gift_card.expires_on -%}
+          <p class="t-small">Expires {{ gift_card.expires_on | date: format: 'date' }}</p>
+        {%- endif -%}
+
+        <a href="{{ shop.url }}" class="btn" style="margin-top:var(--space-5);">Visit the house</a>
+      </div>
+    </main>
+  </body>
+</html>

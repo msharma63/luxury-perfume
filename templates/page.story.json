@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "hero": { "type": "hero-quiet", "settings": { "eyebrow": "The House", "heading": "A small atelier", "subheading": "Composed and bottled by hand. Paris." } },
+    "prose": { "type": "long-form-prose", "settings": {} },
+    "pair": { "type": "image-pair", "settings": {} },
+    "quote": { "type": "pull-quote", "settings": {} },
+    "cta": { "type": "cta-band", "settings": {} }
+  },
+  "order": ["hero", "prose", "pair", "quote", "cta"]
+}

@@ -1,0 +1,109 @@
+<section class="section styleguide">
+  <div class="container">
+    <header class="collection-page__head">
+      <p class="t-eyebrow">Internal</p>
+      <h1 class="t-h1">Styleguide</h1>
+      <p class="t-small">Token visualisation. Hide this page from the navigation in production.</p>
+    </header>
+
+    <div class="styleguide__block">
+      <h2 class="t-h3">Type scale</h2>
+      <p class="t-hero">The Hero — Italiana</p>
+      <p class="t-h1">Heading 1 — Italiana</p>
+      <p class="t-h2">Heading 2 — Italiana</p>
+      <p class="t-h3">Heading 3 — Inter uppercase</p>
+      <p class="t-body">Body copy — Inter 400 at 16px / 1.7 line-height. The quick brown fox jumps over the lazy dog.</p>
+      <p class="t-small">Small / meta — Inter 400 at 13px.</p>
+      <p class="t-eyebrow">Eyebrow — Inter 500 uppercase</p>
+      <p class="t-italic">Italic accent — Cormorant Garamond italic for perfumer attribution.</p>
+    </div>
+
+    <hr class="hairline">
+
+    <div class="styleguide__block">
+      <h2 class="t-h3">Colours</h2>
+      <div class="swatch-grid">
+        <div class="swatch" style="background:var(--ink); color:var(--paper);">Ink</div>
+        <div class="swatch" style="background:var(--paper); color:var(--ink); border:1px solid var(--hairline);">Paper</div>
+        <div class="swatch" style="background:var(--paper-alt); color:var(--ink);">Paper alt</div>
+        <div class="swatch" style="background:var(--champagne); color:var(--ink);">Champagne</div>
+        <div class="swatch" style="background:var(--champagne-deep); color:var(--paper);">Champagne deep</div>
+        <div class="swatch" style="background:var(--smoke); color:var(--paper);">Smoke</div>
+        <div class="swatch" style="background:var(--hairline); color:var(--ink);">Hairline</div>
+      </div>
+    </div>
+
+    <hr class="hairline">
+
+    <div class="styleguide__block">
+      <h2 class="t-h3">Buttons</h2>
+      <div class="styleguide__row">
+        <button class="btn">Add to bag</button>
+        <button class="btn btn--ghost">Continue shopping</button>
+        <button class="btn btn--small">Apply</button>
+        <a href="#" class="btn--inline">Inline link</a>
+      </div>
+    </div>
+
+    <hr class="hairline">
+
+    <div class="styleguide__block">
+      <h2 class="t-h3">Forms</h2>
+      <div style="max-width:460px;">
+        <label class="field">
+          <span class="field__label">Email</span>
+          <input type="email" class="field__input" placeholder="hello@maison.com">
+        </label>
+        <label class="field">
+          <span class="field__label">Message</span>
+          <textarea class="field__textarea"></textarea>
+        </label>
+        <p class="t-eyebrow" style="margin-top:var(--space-4);">Pill group</p>
+        <div class="pill-group">
+          <button class="pill" aria-checked="false">10ml</button>
+          <button class="pill" aria-checked="true">50ml</button>
+          <button class="pill" aria-checked="false">100ml</button>
+        </div>
+      </div>
+    </div>
+
+    <hr class="hairline">
+
+    <div class="styleguide__block">
+      <h2 class="t-h3">Disclosure</h2>
+      <details class="disclosure">
+        <summary class="disclosure__summary">Delivery & returns</summary>
+        <div class="disclosure__body">Complimentary shipping on all orders. Returns accepted within 30 days, unopened.</div>
+      </details>
+      <details class="disclosure">
+        <summary class="disclosure__summary">Wear & presence</summary>
+        <div class="disclosure__body">Longevity 8 hours. Sillage moderate.</div>
+      </details>
+    </div>
+
+    <hr class="hairline">
+
+    <div class="styleguide__block">
+      <h2 class="t-h3">Prose</h2>
+      <div class="prose">
+        <p>From the first note to the long, unfolding base, this composition was built around a single memory of citrus burnt by the August sun. The drop cap on this paragraph demonstrates the editorial treatment.</p>
+        <p>A second paragraph, to verify the rhythm of the line-height and paragraph spacing.</p>
+        <blockquote>A perfume is a memory bottled before it could be photographed.</blockquote>
+        <p>And after the pull quote, prose continues at the standard width.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .styleguide__block { padding-block: var(--space-5); }
+  .styleguide__block > h2 { margin-bottom: var(--space-4); color: var(--smoke); }
+  .styleguide__row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+  .swatch-grid { display: grid; gap: var(--space-2); grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: 750px) { .swatch-grid { grid-template-columns: repeat(4, 1fr); } }
+  .swatch { padding: var(--space-4); font-size: var(--type-small); letter-spacing: var(--ls-meta); text-transform: uppercase; aspect-ratio: 3 / 2; display: flex; align-items: flex-end; }
+</style>
+
+{% schema %}
+{ "name": "Styleguide", "settings": [] }
+{% endschema %}

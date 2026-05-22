@@ -1,0 +1,57 @@
+<section class="section">
+  <div class="container customer-page">
+    <header class="customer-page__head">
+      <p class="t-eyebrow">Account</p>
+      <h1 class="t-h1">{{ 'customer.login_page.title' | t }}</h1>
+    </header>
+
+    {% form 'customer_login' %}
+      {%- if form.errors -%}
+        <div class="customer-page__errors">
+          {{ form.errors | default_errors }}
+        </div>
+      {%- endif -%}
+
+      <label class="field">
+        <span class="field__label">{{ 'customer.login_page.email' | t }}</span>
+        <input type="email" name="customer[email]" autocomplete="email" required class="field__input">
+      </label>
+
+      <label class="field">
+        <span class="field__label">{{ 'customer.login_page.password' | t }}</span>
+        <input type="password" name="customer[password]" autocomplete="current-password" required class="field__input">
+      </label>
+
+      <button type="submit" class="btn btn--full">{{ 'customer.login_page.submit' | t }}</button>
+
+      <div class="customer-page__links">
+        <a href="{{ routes.account_register_url }}">{{ 'customer.login_page.create_account' | t }}</a>
+        <a href="#recover">{{ 'customer.login_page.forgot_password' | t }}</a>
+      </div>
+    {% endform %}
+
+    <details id="recover" class="customer-page__recover">
+      <summary class="t-eyebrow">{{ 'customer.reset_password.title' | t }}</summary>
+      {% form 'recover_customer_password' %}
+        {%- if form.posted_successfully? -%}
+          <p class="t-small">{{ 'customer.reset_password.subtext' | t }}</p>
+        {%- endif -%}
+        <label class="field">
+          <span class="field__label">{{ 'customer.reset_password.email' | t }}</span>
+          <input type="email" name="email" autocomplete="email" required class="field__input">
+        </label>
+        <button type="submit" class="btn btn--ghost">{{ 'customer.reset_password.submit' | t }}</button>
+      {% endform %}
+    </details>
+  </div>
+</section>
+
+<style>
+  .customer-page { max-width: 480px; margin-inline: auto; display: grid; gap: var(--space-4); }
+  .customer-page__head { text-align: center; padding-block: var(--space-5); }
+  .customer-page__head h1 { margin-top: var(--space-2); }
+  .customer-page__errors { padding: var(--space-3); border: 1px solid var(--error); color: var(--error); font-size: 14px; }
+  .customer-page__links { display: flex; justify-content: space-between; margin-top: var(--space-3); font-size: var(--type-small); }
+  .customer-page__recover { margin-top: var(--space-5); padding-top: var(--space-5); border-top: var(--hairline-w) solid var(--hairline); }
+  .customer-page__recover summary { cursor: pointer; margin-bottom: var(--space-3); }
+</style>

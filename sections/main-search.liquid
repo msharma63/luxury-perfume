@@ -1,0 +1,57 @@
+<section class="section">
+  <div class="container">
+    <header class="collection-page__head">
+      <p class="t-eyebrow">{{ 'general.search.title' | t }}</p>
+      <form action="{{ routes.search_url }}" method="get" role="search">
+        <label class="visually-hidden" for="search-input">{{ 'general.search.search' | t }}</label>
+        <div class="field--inline" style="max-width:520px; margin-inline:auto;">
+          <input
+            id="search-input"
+            type="search"
+            name="q"
+            value="{{ search.terms | escape }}"
+            placeholder="{{ 'general.search.placeholder' | t }}"
+            class="field__input"
+            autofocus>
+          <button type="submit" class="btn--inline">{{ 'general.search.search' | t }}</button>
+        </div>
+      </form>
+    </header>
+
+    {%- if search.performed -%}
+      {%- if search.results_count > 0 -%}
+        <p class="t-small" style="text-align:center; margin-bottom:var(--space-5);">
+          {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
+        </p>
+
+        <div class="grid grid--products">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {% render 'product-card', product: item %}
+            {%- elsif item.object_type == 'article' -%}
+              <a href="{{ item.url }}" class="product-card">
+                <div class="product-card__media">
+                  {%- if item.image -%}
+                    <img src="{{ item.image | image_url: width: 600 }}" alt="{{ item.title | escape }}" loading="lazy" width="{{ item.image.width }}" height="{{ item.image.height }}">
+                  {%- endif -%}
+                </div>
+                <div class="product-card__body">
+                  <p class="product-card__eyebrow">{{ 'blogs.index.eyebrow' | t }}</p>
+                  <h3 class="product-card__title">{{ item.title }}</h3>
+                </div>
+              </a>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <p class="t-display" style="font-size:28px; text-align:center; padding-block:var(--space-6);">
+          {{ 'general.search.no_results' | t: terms: search.terms }}
+        </p>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Search", "settings": [] }
+{% endschema %}

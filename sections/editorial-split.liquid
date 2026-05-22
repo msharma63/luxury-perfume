@@ -1,0 +1,74 @@
+<section class="section editorial-split">
+  <div class="container">
+    <div class="split split--equal {% if section.settings.reverse %}split--reverse{% endif %}">
+      <div class="editorial-split__media">
+        {%- if section.settings.image -%}
+          <img
+            src="{{ section.settings.image | image_url: width: 1200 }}"
+            srcset="{{ section.settings.image | image_url: width: 600 }} 600w, {{ section.settings.image | image_url: width: 1200 }} 1200w"
+            sizes="(min-width: 990px) 50vw, 100vw"
+            alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}"
+            loading="lazy">
+        {%- else -%}
+          <div class="editorial-split__placeholder"></div>
+        {%- endif -%}
+      </div>
+
+      <div class="editorial-split__copy">
+        <div>
+          {%- if section.settings.eyebrow != blank -%}
+            <p class="t-eyebrow">{{ section.settings.eyebrow }}</p>
+          {%- endif -%}
+          {%- if section.settings.heading != blank -%}
+            <h2 class="t-h2 editorial-split__heading">{{ section.settings.heading }}</h2>
+          {%- endif -%}
+          {%- if section.settings.body != blank -%}
+            <div class="prose">{{ section.settings.body }}</div>
+          {%- endif -%}
+          {%- if section.settings.cta_text != blank -%}
+            <a href="{{ section.settings.cta_link }}" class="btn--inline editorial-split__cta">
+              {{ section.settings.cta_text }}
+              {% render 'icon', name: 'arrow-right' %}
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .editorial-split__media img,
+  .editorial-split__placeholder {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    object-fit: cover;
+    background: var(--paper-alt);
+  }
+
+  .editorial-split__copy { display: flex; align-items: center; }
+
+  .editorial-split__heading { margin-block: var(--space-3) var(--space-4); }
+
+  .editorial-split__cta { margin-top: var(--space-5); }
+</style>
+
+{% schema %}
+{
+  "name": "Editorial split",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "The house" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A small atelier in the 6th" },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>Each composition begins as a phrase scribbled on the back of an envelope, lived with for months before it ever reaches a vial. We make small batches, by hand, in Paris.</p>" },
+    { "type": "text", "id": "cta_text", "label": "CTA text", "default": "Read the story" },
+    { "type": "url", "id": "cta_link", "label": "CTA link" },
+    { "type": "checkbox", "id": "reverse", "label": "Reverse layout", "default": false }
+  ],
+  "presets": [
+    { "name": "Editorial split" }
+  ]
+}
+{% endschema %}

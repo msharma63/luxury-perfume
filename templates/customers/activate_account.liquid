@@ -1,0 +1,27 @@
+<section class="section">
+  <div class="container customer-page">
+    <header class="customer-page__head">
+      <p class="t-eyebrow">Account</p>
+      <h1 class="t-h1">Activate your account</h1>
+      <p class="t-small">Choose a password to complete your registration.</p>
+    </header>
+
+    {% form 'activate_customer_password' %}
+      {%- if form.errors -%}<div class="customer-page__errors">{{ form.errors | default_errors }}</div>{%- endif -%}
+
+      <label class="field"><span class="field__label">Password</span>
+        <input type="password" name="customer[password]" autocomplete="new-password" required class="field__input"></label>
+
+      <label class="field"><span class="field__label">Confirm password</span>
+        <input type="password" name="customer[password_confirmation]" autocomplete="new-password" required class="field__input"></label>
+
+      <button type="submit" class="btn btn--full">Activate account</button>
+      <button type="submit" name="decline" class="btn--inline" style="margin-top:var(--space-3); display:block; text-align:center; width:100%;">Decline invitation</button>
+    {% endform %}
+  </div>
+</section>
+
+<style>
+  .customer-page { max-width: 480px; margin-inline: auto; display: grid; gap: var(--space-3); }
+  .customer-page__head { text-align: center; padding-block: var(--space-5); }
+</style>

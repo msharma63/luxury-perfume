@@ -1,0 +1,74 @@
+<article class="article">
+  {%- if article.image -%}
+    <div class="article__hero">
+      <img
+        src="{{ article.image | image_url: width: 2400 }}"
+        srcset="{{ article.image | image_url: width: 1200 }} 1200w, {{ article.image | image_url: width: 1800 }} 1800w, {{ article.image | image_url: width: 2400 }} 2400w"
+        sizes="100vw"
+        alt="{{ article.image.alt | default: article.title | escape }}"
+        width="{{ article.image.width }}"
+        height="{{ article.image.height }}"
+        fetchpriority="high">
+    </div>
+  {%- endif -%}
+
+  <div class="container article__body">
+    <header class="article__head">
+      {%- if article.tags.size > 0 -%}
+        <p class="t-eyebrow">{{ article.tags | first }}</p>
+      {%- endif -%}
+      <h1 class="t-h1 article__title">{{ article.title }}</h1>
+      <p class="t-small article__meta">{{ article.published_at | date: '%B %-d, %Y' }} · {{ article.author }}</p>
+    </header>
+
+    <div class="prose article__prose">
+      {{ article.content }}
+    </div>
+
+    {%- assign featured = article.metafields.custom.featured_products.value -%}
+    {%- if featured.size > 0 -%}
+      <aside class="article__featured">
+        <p class="t-eyebrow eyebrow-rule">From this story</p>
+        <div class="grid grid--products">
+          {%- for product in featured limit: 3 -%}
+            {% render 'product-card', product: product %}
+          {%- endfor -%}
+        </div>
+      </aside>
+    {%- endif -%}
+
+    <footer class="article__foot">
+      <a href="{{ blog.url }}" class="btn--inline">{{ 'blogs.article.back_to_journal' | t }}</a>
+    </footer>
+  </div>
+</article>
+
+<style>
+  .article__hero img { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; }
+
+  @media (max-width: 749px) {
+    .article__hero img { aspect-ratio: 4 / 5; }
+  }
+
+  .article__body { padding-block: var(--space-7); max-width: 880px; }
+
+  .article__head { text-align: center; margin-bottom: var(--space-6); display: flex; flex-direction: column; gap: var(--space-2); align-items: center; }
+
+  .article__title { margin: 0; }
+
+  .article__meta { color: var(--smoke); }
+
+  .article__prose { margin-inline: auto; }
+
+  .article__prose img { margin-block: var(--space-5); }
+
+  .article__featured { margin-top: var(--space-7); padding-top: var(--space-5); border-top: var(--hairline-w) solid var(--hairline); text-align: center; }
+
+  .article__featured p { margin-bottom: var(--space-5); }
+
+  .article__foot { margin-top: var(--space-6); text-align: center; }
+</style>
+
+{% schema %}
+{ "name": "Article", "settings": [] }
+{% endschema %}

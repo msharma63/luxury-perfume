@@ -1,0 +1,13 @@
+{%- comment -%}
+  Renders the same drawer markup as the snippet, used as a section endpoint
+  so the cart drawer can be re-fetched server-side after add-to-cart.
+{%- endcomment -%}
+
+{% render 'cart-drawer' %}
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": []
+}
+{% endschema %}

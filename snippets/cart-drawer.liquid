@@ -1,0 +1,84 @@
+<cart-drawer class="drawer" role="dialog" aria-modal="true" aria-label="{{ 'cart.general.title' | t }}">
+  <div class="drawer__overlay" data-drawer-overlay></div>
+  <aside class="drawer__panel">
+    <header class="drawer__header">
+      <p class="t-eyebrow">{{ 'cart.general.title' | t }}</p>
+      <button class="drawer__close" data-drawer-close aria-label="{{ 'accessibility.close' | t }}">
+        {% render 'icon', name: 'close' %}
+      </button>
+    </header>
+
+    <div class="drawer__body" data-drawer-body>
+      {%- if cart.item_count == 0 -%}
+        <div class="cart-empty">
+          <p class="t-display" style="font-size:32px;">{{ 'cart.general.empty' | t }}</p>
+          <a href="{{ routes.collections_url }}/all" class="btn btn--ghost">
+            {{ 'cart.general.continue_shopping' | t }}
+          </a>
+        </div>
+      {%- else -%}
+        <ul class="cart-items">
+          {%- for item in cart.items -%}
+            <li class="cart-item">
+              <a href="{{ item.url }}" class="cart-item__media">
+                {%- if item.image -%}
+                  <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.image.alt | escape }}" width="100" height="125" loading="lazy">
+                {%- endif -%}
+              </a>
+              <div class="cart-item__body">
+                <a href="{{ item.url }}" class="cart-item__title">{{ item.product.title }}</a>
+                {%- unless item.variant.title contains 'Default' -%}
+                  <p class="t-small">{{ item.variant.title }}</p>
+                {%- endunless -%}
+                <p class="cart-item__price">{{ item.final_line_price | money }}</p>
+                <div class="cart-item__qty">
+                  <span class="t-small">{{ item.quantity }} ×</span>
+                  <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&amp;quantity=0" class="t-small btn--inline">
+                    {{ 'cart.general.remove' | t }}
+                  </a>
+                </div>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      <footer class="drawer__footer">
+        <div class="cart-totals">
+          <span class="t-eyebrow">{{ 'cart.general.subtotal' | t }}</span>
+          <span class="t-display" style="font-size:22px;">{{ cart.total_price | money }}</span>
+        </div>
+        <p class="t-small">{{ 'cart.general.taxes_and_shipping_at_checkout' | t }}</p>
+        <form action="{{ routes.cart_url }}" method="post">
+          <button type="submit" name="checkout" class="btn btn--full">
+            {{ 'cart.general.checkout' | t }}
+          </button>
+        </form>
+      </footer>
+    {%- endif -%}
+  </aside>
+</cart-drawer>
+
+<style>
+  .drawer__close { width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; }
+
+  .cart-empty { text-align: center; padding-block: var(--space-7); display: flex; flex-direction: column; gap: var(--space-4); align-items: center; }
+
+  .cart-items { list-style: none; margin: 0; padding: 0; }
+
+  .cart-item { display: grid; grid-template-columns: 100px 1fr; gap: var(--space-3); padding-block: var(--space-4); border-bottom: var(--hairline-w) solid var(--hairline); }
+
+  .cart-item__media img { aspect-ratio: 4 / 5; object-fit: cover; background: var(--paper-alt); }
+
+  .cart-item__title { font-family: var(--font-display); font-size: 20px; line-height: 1.1; }
+
+  .cart-item__price { margin-block: var(--space-2); font-size: 14px; }
+
+  .cart-item__qty { display: flex; gap: var(--space-3); align-items: center; }
+
+  .cart-totals { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: var(--space-2); }
+
+  .drawer__footer .btn { margin-top: var(--space-3); }
+</style>

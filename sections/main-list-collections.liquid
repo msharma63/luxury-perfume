@@ -1,0 +1,33 @@
+<section class="section">
+  <div class="container">
+    <header class="collection-page__head">
+      <h1 class="t-h1">{{ 'general.breadcrumbs.home' | t }}</h1>
+    </header>
+    <div class="grid grid--families">
+      {%- for collection in collections -%}
+        <a href="{{ collection.url }}" class="family-tile">
+          <div class="family-tile__media">
+            {%- if collection.image -%}
+              <img src="{{ collection.image | image_url: width: 800 }}" alt="{{ collection.title | escape }}" loading="lazy" width="400" height="500">
+            {%- elsif collection.products.first.featured_image -%}
+              <img src="{{ collection.products.first.featured_image | image_url: width: 800 }}" alt="{{ collection.title | escape }}" loading="lazy" width="400" height="500">
+            {%- else -%}
+              <div class="family-tile__placeholder"></div>
+            {%- endif -%}
+          </div>
+          <div class="family-tile__body">
+            <h3 class="t-display family-tile__title">{{ collection.title }}</h3>
+            <p class="t-small">{{ collection.products_count }} fragrances</p>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "List collections",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,36 @@
+{%- assign related = product.metafields.custom.related_products.value -%}
+
+{%- if related.size > 0 -%}
+  <section class="section pairings">
+    <div class="container">
+      <header class="pairings__head">
+        <p class="t-eyebrow eyebrow-rule">{{ section.settings.eyebrow }}</p>
+        <h2 class="t-h2">{{ section.settings.heading }}</h2>
+      </header>
+
+      <div class="grid grid--products pairings__grid">
+        {%- for related_product in related limit: 3 -%}
+          {% render 'product-card', product: related_product %}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+<style>
+  .pairings__head { text-align: center; margin-bottom: var(--space-6); display: flex; flex-direction: column; gap: var(--space-3); align-items: center; }
+
+  @media (min-width: 990px) {
+    .pairings__grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Pairings",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Pairings" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "From the same hand" }
+  ]
+}
+{% endschema %}
